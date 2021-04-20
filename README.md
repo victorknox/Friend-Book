@@ -16,11 +16,11 @@ You  are  fascinated  about  how  Facebook  manages  to recommend friends which 
 3. Each user has a collection of users which are calledits friends.  Note that it is possible that user ‘A’ isa friend of user ‘B’ but not vice versa.  If a friendunregisters from the system, then that friend mustbe removed from his friends list.
 
 ### 2. Friends Recommendation
-1.For already registered users, show top ‘K’ rec-ommendations.   Recommendation  should  be  doneas follows:  
-2.A friend should not be recommended.  
-3.All  second  friends  (friends  of  friends)  should  begiven  more  preference  than  all  third  friends.   Allthird friends should be given more preference thanall fourth friends and so on.  
-4.For two friends which are bothithfriend, they willbe preferred in random order.
-5.When  a  new  user  is  registering  in  the  sys-tem, show top 10 recommendations based on somecommon parameters.  The more parameters a userhas  in  common,  the  more  preferred  it  will  be. If two  users  have  the  same  number  of  common  pa-rameters, then choose randomly.  
+1. For already registered users, show top ‘K’ rec-ommendations.   Recommendation  should  be  doneas follows:  
+2. A friend should not be recommended.  
+3. All  second  friends  (friends  of  friends)  should  begiven  more  preference  than  all  third  friends.   Allthird friends should be given more preference thanall fourth friends and so on.  
+4. For two friends which are bothithfriend, they willbe preferred in random order.
+5. When  a  new  user  is  registering  in  the  sys-tem, show top 10 recommendations based on somecommon parameters.  The more parameters a userhas  in  common,  the  more  preferred  it  will  be. If two  users  have  the  same  number  of  common  pa-rameters, then choose randomly.  
 6. If  the  number  of  already  registered  users  are  lessthan or equal to 10, then show all the users.  
 7. If the number of already registered users are greaterthan but the number of users with some commonparameters  are  less  than  10,  then  show  all  thoseusers  with  common  parameters  and  then  showother users randomly such that they are all 10 intotal.  
 8. Let, the number of recommended users be K, nowthe  new  registering  user  would  add  any  X  (≤k)users  to  friends.   ‘K’  along  with  the  list  of  ID  offriends would be given as an input.
