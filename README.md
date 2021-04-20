@@ -2,9 +2,13 @@
 A simple friends recommendation system resembling that of facebook's 
 
 # Question statement
+
 ## A.    Legend
-You  are  fascinated  about  how  Facebook  manages  torecommend friends which are in most of the cases relatedto us in some ways.  So you decided to come up with yourown system to recommend friends.  Of-course, it won’t besome complex ML stuff!!
-## B.    Specifications  
+
+You  are  fascinated  about  how  Facebook  manages  to recommend friends which are in most of the cases related to us in some ways.  So you decided to come up with your own system to recommend friends.  Of-course, it won’t besome complex ML stuff!!
+
+## B. Specifications
+
 ### 1. User
 1. Users can register in your system.  Each user willhave some parameters like name,age,city,etc.  Alsothere must be some unique ID for every user.  TheID should be a minimum positive integer which isnot currently in use.
 2. Users can unregister from your system. After a userunregisters from the system, its ID can be used byanother user.
