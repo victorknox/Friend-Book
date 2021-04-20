@@ -5,7 +5,7 @@ A simple friends recommendation system resembling that of facebook's
 
 ## A.    Legend
 
-You  are  fascinated  about  how  Facebook  manages  to recommend friends which are in most of the cases related to us in some ways.  So you decided to come up with your own system to recommend friends.  Of-course, it won’t besome complex ML stuff!!
+You  are  fascinated  about  how  Facebook  manages  to recommend friends which are in most of the cases related to us in some ways.  So you decided to come up with your own system to recommend friends.  Of-course, it won’t besome complex M.L stuff!!
 
 ## B. Specifications
 
@@ -16,7 +16,7 @@ You  are  fascinated  about  how  Facebook  manages  to recommend friends which 
 3. Each user has a collection of users which are call edits friends.  Note that it is possible that user ‘A’ isa friend of user ‘B’ but not vice versa.  If a friend unregisters from the system, then that friend mustbe removed from his friends list.
 
 ### 2. Friends Recommendation
-1. For already registered users, show top ‘K’ rec-ommendations.   Recommendation  should  be  doneas follows:  
+1. For already registered users, show top ‘K’ recommendations.   Recommendation  should  be  doneas follows:  
 2. A friend should not be recommended.  
 3. All  second  friends  (friends  of  friends)  should  begiven  more  preference  than  all  third  friends.   Allthird friends should be given more preference thanall fourth friends and so on.  
 4. For two friends which are bothithfriend, they willbe preferred in random order.
