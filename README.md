@@ -11,9 +11,9 @@ You  are  fascinated  about  how  Facebook  manages  to recommend friends which 
 
 ### 1. User
 
-1. Users can register in your system.  Each user willhave some parameters like name,age,city,etc.  Alsothere must be some unique ID for every user.  TheID should be a minimum positive integer which isnot currently in use.
-2. Users can unregister from your system. After a userunregisters from the system, its ID can be used byanother user.
-3. Each user has a collection of users which are calledits friends.  Note that it is possible that user ‘A’ isa friend of user ‘B’ but not vice versa.  If a friendunregisters from the system, then that friend mustbe removed from his friends list.
+1. Users can register in your system. Each user will have some parameters like name,age,city,etc. Also there must be some unique ID for every user. The ID should be a minimum positive integer which is not currently in use.
+2. Users can unregister from your system. After a user unregisters from the system, its ID can be used by another user.
+3. Each user has a collection of users which are call edits friends.  Note that it is possible that user ‘A’ isa friend of user ‘B’ but not vice versa.  If a friend unregisters from the system, then that friend mustbe removed from his friends list.
 
 ### 2. Friends Recommendation
 1. For already registered users, show top ‘K’ rec-ommendations.   Recommendation  should  be  doneas follows:  
