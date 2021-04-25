@@ -15,12 +15,25 @@ typedef struct node Node;
 typedef struct node *PtrToNode;
 typedef struct node *queue;
 
+//H and T are dummy nodes pointing to the beginning and end of the queue respectively
+
 queue Makequeue();
-void push(PtrToNode H, ElementType y);
-void pop(PtrToNode H);
-bool empty(PtrToNode H);
-PtrToNode front(PtrToNode H);
-PtrToNode back(PtrToNode T);
+void push(PtrToNode H, ElementType y);//push(H,y) is equivalent to push(y)
+void pop(PtrToNode H);//pop(H) is equivalent to pop()
+bool empty(PtrToNode H);//empty(H) is equivalent to empty() [returns true or false]
+PtrToNode front(PtrToNode H);//front(H) is equivalent to front() [returns pointer to first element of queue]
+PtrToNode back(PtrToNode T);//back(T) is equivalent to back() [returns pointer to last element of queue]
+
+/* 
+Use these 4 lines while executing(before using these functions):
+
+PtrToNode H = Makequeue();
+PtrToNode T = Makequeue();
+H->Next = T;
+T->Prev = H;
+
+*/
+
 
 queue Makequeue()
 {
@@ -29,17 +42,6 @@ queue Makequeue()
       Q->Prev = NULL;
       return Q;
 }
-
-/* 
-Use this while executing:
-(H and T are dummy nodes at the beginning and end of the queue respectively)
-
-PtrToNode H = Makequeue();
-PtrToNode T = Makequeue();
-H->Next = T;
-T->Prev = H;
-
-*/
 
 void push(PtrToNode T, ElementType y)
 {
