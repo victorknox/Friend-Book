@@ -1,107 +1,107 @@
 #include <stdio.h>
-
+#include <math.h>
+#include <stdlib.h>
 
 #define min_no_frds 20
 typedef struct data data;
 typedef struct friends friends;
 
-
 struct data
 {
-  user_id;
-  data* next;
+  int user_id;
+  data *next;
 };
 
 struct friends
 {
+  int capacity;
   int num_added;
   data self;
-  data friend[];
+  data *friend[];
 };
 
+void add(long long int user_id, friends **S);
 
-friends* vector(data *oftheperson)
+int hash(int user_id, int n)
 {
-  friends *person =malloc(sizeof(friends *)+sizeof(data [min_no_frds]));
-  if(person==NULL)
+  return user_id % n;
+}
+
+data *createdata()
+{
+  data *createdata = (data *)malloc(sizeof(struct data));
+  createdata->user_id = 0;
+  createdata->next = NULL;
+  return createdata;
+}
+
+friends *vector(data oftheperson)
+{
+  friends *person = (friends *)malloc(sizeof(friends *) + sizeof(data[min_no_frds]));
+  if (person == NULL)
   {
     printf("Couldn't allocate memory");
     exit(1);
   }
-  else{
-  person->self.user_id=oftheperson->user_id;//whatever the data is :)
-  person->self.next=NULL;
-  person->num_added = 0;
-  for(int i=0;i<min_no_frds;i++)
-  {
-  person->friend[i].user_id=0;
-  person->friend[i].next=NULL;}
-  //will also allocate all elems of friend user id to zero
-  return person;
-  }
-}
-  
-
-void reallocvector(friends *S,int numbertotal)
-{
-  friends *temp;
-  temp=(friends *)realloc(S,sizeof(friends *)+sizeof(data [numbertotal]));
-  if(temp==NULL)
-  {
-    printf("Couldn't allocate more memory");
-    return;
-  }
   else
   {
-    S=temp;
+    person->self.user_id = oftheperson.user_id; //whatever the data is :)
+    person->self.next = NULL;
+    person->num_added = 0;
+    person->capacity = min_no_frds;
+    for (int i = 0; i <= min_no_frds; i++)
+    {
+      person->friend[i] = createdata();
+    }
+    //will also allocate all elems of friend user id to zero
+    return person;
   }
 }
-
-
-int isEmpty(friends *S)
+void reallocall(friends **Q)
 {
-  if(S->num_added==0)
+  friends *temp = *Q;
+  *Q = (friends *)malloc(sizeof(friends *) + sizeof(data [min_no_frds+temp->capacity]));;
+  (*Q)->self.user_id = temp->self.user_id; //whatever the data is :)
+    (*Q)->self.next = NULL;
+    (*Q)->num_added = 0;
+    (*Q)->capacity = min_no_frds+temp->capacity;
+    for (int i = 0; i < (*Q)->capacity; i++)
+    {
+      (*Q)->friend[i] = createdata();
+    }
+  for (int i = 0; i < temp->capacity; i++)
   {
-    return 1;
+    while (temp->friend[i] -> next != NULL)
+    {
+      add(temp->friend[i] -> next -> user_id, Q);
+      temp->friend[i] -> next = temp->friend[i] -> next -> next;
+    }
   }
-  else return 0;
+  free(temp);
 }
 
 
-int vectortotal(friends *S)
-{
-  return S->num_added;
-}
 
-
-void remove(friends* S,long long int remove_id)
+int checkfriendshipstatus(friends *S, long long int check_id)
 {
-  long long int p= hash(remove_id,(min_no_frds)*ceil(S->num_added/min_no_frds));
-  if(S->friend[p].user_id==remove_id) 
+  long long int p = hash(check_id, S->capacity);
+  if(S->friend[p]->next==NULL)
+  return 0;
+  if (S->friend[p]->next->user_id != 0)
   {
-    if()
-  }
-}
-
-int checkfriendshipstatus(friends* S,long long int check_id)
-{
-  long long int p=hash(check_id,(min_no_frds)*ceil(S->num_added/min_no_frds));
-  if(S->friend[p].user_id!=0)
-  {
-    if(S->friend[p].user_id==check_id)
-    return 1;
+    if (S->friend[p]->next->user_id == check_id)
+      return 1;
     else
     {
-      data* P=S->friend[p].next;
-      while(P!=NULL)
+      data *P = S->friend[p]->next->next;
+      while (P!= NULL)
       {
-        if(P->user_id==check_id)
-        return 1;
+        if (P->user_id == check_id)
+          return 1;
         else
         {
-          P=P->next;
+          P = P->next;
         }
-        
       }
     }
   }
@@ -109,47 +109,63 @@ int checkfriendshipstatus(friends* S,long long int check_id)
 }
 
 
-void add(long long int user_id, friends* S)
+
+
+int isEmpty(friends *S)
 {
-  if( S->num_added % min_no_frds != 0 )
+  if (S->num_added == 0)
   {
-    S->num_added++;
-    long long int p = hash(user_id,(min_no_frds)*ceil(S->num_added/min_no_frds));
-    if(S->friend[p].user_id==0)
-    S->friend[p].user_id = user_id ;//data of the person that will be added
+    return 1;
+  }
+  else
+    return 0;
+}
+
+int vectortotal(friends *S)
+{
+  return S->num_added;
+}
+
+void add(long long int user_id, friends **S)
+{
+  (*S)->num_added++;
+  if ((*S)->num_added % ((*S)->capacity) != 0)
+  {
+    long long int p = hash(user_id, (*S)->capacity);
+    if ((*S)->friend[p] -> next == NULL)
+    {
+      (*S)->friend[p] -> next = createdata();
+      (*S)->friend[p] -> next -> user_id = user_id;
+    }
     else
     {
-      data *P=S->friend[p].next;
-      while(P->user_id!=0)
+      data *Q = (*S)->friend[p] -> next;
+      while (Q->next != NULL)
       {
-        P=P->next;
+        Q = Q->next;
       }
-      P->user_id=user_id;
-      P->next=NULL;
+      Q->next = createdata();
+      Q->next->user_id = user_id;
     }
   }
   else
   {
-    reallocvector(S,S->num_added+min_no_frds);
-    long long int p = hash(user_id,(min_no_frds)*ceil(S->num_added/min_no_frds));
-    if(S->friend[p].user_id==0)
-    S->friend[p].user_id = user_id ;//data of the person that will be added
+    reallocall(S);
+    long long int p = hash(user_id, (*S)->capacity);
+    if ((*S)->friend[p] -> next == NULL)
+    {
+      (*S)->friend[p] -> next = createdata();
+      (*S)->friend[p] -> next -> user_id = user_id;
+    }
     else
     {
-      data *P=S->friend[p].next;
-      while(P->user_id!=0)
+      data *q = (*S)->friend[p] -> next;
+      while (q->next != NULL)
       {
-        P=P->next;
+        q = q->next;
       }
-      P->user_id=user_id;
-      P->next=NULL;
+      q->next = createdata();
+      q->next->user_id = user_id;
     }
   }
 }
-                             
-                           
-                          
-
-
-  
-
