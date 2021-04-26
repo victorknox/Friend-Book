@@ -169,3 +169,24 @@ void add(long long int user_id, friends **S)
     }
   }
 }
+
+void removeval(int check_id,friends* Q)
+{
+  long long int p=hash(check_id, Q->capacity);
+  while(Q->friend[p]->next!=NULL)
+  {
+    if(Q->friend[p]->next->user_id==check_id)
+    {
+      data* P=createdata();
+      P=Q->friend[p]->next;
+      Q->friend[p]->next=Q->friend[p]->next->next;
+      free(P);
+      break;
+    }
+    Q->friend[p]->next=Q->friend[p]->next->next;
+  }
+}
+
+
+
+
