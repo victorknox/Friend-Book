@@ -1,3 +1,5 @@
+The min_no_of_frds I have initialised to 20. It can be changed according to requirements. 
+
 
 
 Struct data:
@@ -51,6 +53,53 @@ int vectortotal(friends *S): It returns the total number of friends a person has
 
 
 void removeval(int check_id,friends* Q): It removes the friend with a given id and decrements the number of friends added.
+
+
+
+An example of the main function that I have used::
+
+#include <stdio.h>
+#include "vector.c"
+
+int main()
+{
+    data p;
+    p.user_id=2020;
+    p.next=NULL;
+    friends *person;
+    person=vector(p);
+    
+    add(4041,&person);
+    add(4042,&person);
+    add(2021,&person);
+    add(4043,&person);
+    add(4047,&person);
+    add(4049,&person);
+    add(4051,&person);
+    add(4039,&person);
+    add(2026,&person);
+    
+    int q=checkfriendshipstatus(person,2021);
+    printf("%d",q);
+
+    removeval(4047,person);
+    q=checkfriendshipstatus(person,4047);
+    printf(" %d",q);
+    removeval(4041,person);
+    q=checkfriendshipstatus(person,4041);
+    printf(" %d",q);
+    removeval(4042,person);
+    q=checkfriendshipstatus(person,4042);
+    printf(" %d",q);
+    removeval(2021,person);
+    q=checkfriendshipstatus(person,2021);
+    printf(" %d",q);
+    removeval(4049,person);
+    q=checkfriendshipstatus(person,4049);
+    printf(" %d",q);
+    printf(" %d",person->num_added);
+    return 0;
+}
 
 
 
