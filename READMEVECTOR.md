@@ -22,6 +22,9 @@ capacity : It is the capacity of the friends. That is friend[0]->friend[capacity
 num_added: It contains the details of number of friends added till then.
 
 
+**Functions:
+
+
 int hash(int user_id, int n) : I am implementing the hash function as mod(n); The hash function will be changed to implement horner's rule.
 
 
@@ -33,6 +36,23 @@ friends *vector(data oftheperson): It creates the data to the struct friends usi
 
 void add(long long int user_id, friends** S): It adds the friends of the person when userid is given. If there is no collision it adds according to the hash value.
 If there is a collision it uses seperate chaining. If the num_added is greater than capacity it reallocs the data and adds according to the above.
+
+
+void reallocall(friends** Q): It take pointer to the pointer to the struct friends and assigns all the data to a temporary pointer temp. Reallocates all the data in temp to Q which has been 'malloc'ed again (Realloc doesnt seem useful since the hash function changes). Now the data has been reallocated and it returns to the function add where it adds the necessary data.
+
+
+int checkfriendshipstatus(friends *S, long long int check_id): It checks the friendship status of the person and a given userid. It returns '0' if not a friend and '1' if it is a friend.
+
+
+int isEmpty(friends *S): Checks if there are friends to a person. If no friends ae added it returns '1' else returns '0'.
+
+
+int vectortotal(friends *S): It returns the total number of friends a person has.
+
+
+void removeval(int check_id,friends* Q): It removes the friend with a given id and decrements the number of friends added.
+
+
 
 
 
