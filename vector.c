@@ -185,6 +185,7 @@ void removeval(int check_id,friends* Q)
     }
     Q->friend[p]->next=Q->friend[p]->next->next;
   }
+  Q->num_added--;
 }
 
 
