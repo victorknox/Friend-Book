@@ -128,44 +128,47 @@ int vectortotal(friends *S)
 
 void add(long long int user_id, friends **S)
 {
-  (*S)->num_added++;
-  if ((*S)->num_added % ((*S)->capacity) != 0)
+  if(checkfriendshipstatus((*S),user_id==0)
   {
-    long long int p = hash(user_id, (*S)->capacity);
-    if ((*S)->friend[p] -> next == NULL)
+    (*S)->num_added++;
+    if ((*S)->num_added % ((*S)->capacity) != 0)
     {
-      (*S)->friend[p] -> next = createdata();
-      (*S)->friend[p] -> next -> user_id = user_id;
+      long long int p = hash(user_id, (*S)->capacity);
+      if ((*S)->friend[p] -> next == NULL)
+      {
+        (*S)->friend[p] -> next = createdata();
+        (*S)->friend[p] -> next -> user_id = user_id;
+     }
+      else
+      { 
+        data *Q = (*S)->friend[p] -> next;
+        while (Q->next != NULL)
+        {
+          Q = Q->next;
+        }
+        Q->next = createdata();
+        Q->next->user_id = user_id;
+      }
     }
     else
     {
-      data *Q = (*S)->friend[p] -> next;
-      while (Q->next != NULL)
+      reallocall(S);
+      long long int p = hash(user_id, (*S)->capacity);
+      if ((*S)->friend[p] -> next == NULL)
       {
-        Q = Q->next;
+        (*S)->friend[p] -> next = createdata();
+        (*S)->friend[p] -> next -> user_id = user_id;
       }
-      Q->next = createdata();
-      Q->next->user_id = user_id;
-    }
-  }
-  else
-  {
-    reallocall(S);
-    long long int p = hash(user_id, (*S)->capacity);
-    if ((*S)->friend[p] -> next == NULL)
-    {
-      (*S)->friend[p] -> next = createdata();
-      (*S)->friend[p] -> next -> user_id = user_id;
-    }
-    else
-    {
-      data *q = (*S)->friend[p] -> next;
-      while (q->next != NULL)
+      else
       {
-        q = q->next;
+        data *q = (*S)->friend[p] -> next;
+        while (q->next != NULL)
+        {
+          q = q->next;
+        }
+        q->next = createdata();
+        q->next->user_id = user_id;
       }
-      q->next = createdata();
-      q->next->user_id = user_id;
     }
   }
 }
