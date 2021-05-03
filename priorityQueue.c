@@ -1,134 +1,64 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
+#include <stdbool.h>
 
 #include "priorityQueue.h"
 
-void MakeEmptyHeap()
-{
-    front_ = rear_ = -1;
-}
 
-void insert(int element)
+///////////
+//PRIORITY QUEUE
+//////////
+
+///////////NEW SERIES OF CODE BEGINS HERE///////////
+
+long heap[max_size], heapSize = 0;
+
+
+void InsertToHeap(long element) //index from the array 1 to max_size.......***parent to index is index/2***.....
 {
-    if (rear_ >= max_size - 1)
+    heapSize++;
+    heap[heapSize] = element;
+    int index = heapSize;
+    while (heap[index / 2] > element)
     {
-        printf("---OVERFLOW---\n");
-        return;
+        heap[index] = heap[index / 2];
+        index /= 2;
     }
-    if ((front_ == -1) && (rear_ == -1))
+    heap[index] = element;
+}
+
+int CheckIsEmpty()            //return 0 if it is empty
+{
+    if ( heapSize ) return 1;
+    else return 0;
+}
+long extractMin()
+{
+    long minElement, lastElement;
+    int child, index;
+
+    minElement = heap[1];
+    lastElement = heap[heapSize];
+    heapSize--;
+    ///////////////////////////
+    //LEFT CHILD IS 2*index
+    //RIGHT  CHILD IS left_child+1
+    ///////////////////////////
+
+    for (index = 1; index * 2 <= heapSize; index = child)
     {
-        rear_++;
-        front_++;
-        pQueue[rear_] = element;
-    }
-    else
-    {
-        rear_++;
-        pQueue[rear_] = element;
-        heapify();
-    }
-}
+        child = index * 2;
+        if (child != heapSize && heap[child + 1] < heap[child]) //right child condition...
+            child++;
 
-int parentIndex(int index)
-{
-    return (index - 1) / 2;
-}
-int leftChildIndex(int index)
-{
-    return 2 * index + 1;
-}
-int rightChildIndex(int index)
-{
-    return 2 * index + 2;
-}
-
-void swap(int a, int b)
-{
-    int temp = pQueue[a];
-    pQueue[a] = pQueue[b];
-    pQueue[b] = temp;
-}
-
-void heapify_insert()
-{
-    int element = pQueue[rear_], index = rear_;
-
-    while (1)
-    {
-        if (element < pQueue[parentIndex(index)])
-            swap(index, parentIndex(index));
-        else
-            return;
-        index = parentIndex(index);
-        if (index == 0)
-            return;
-    }
-}
-
-int extractMin()
-{
-    int min = pQueue[0];
-    heapify_delete();
-    return min;
-}
-
-int checkForRP(int index)
-{
-    if (2 * index + 1 > rear_)
-        return 0;
-    else
-        return 1;
-}
-
-int checkForLP(int index)
-{
-    if (2 * index + 2 > rear_)
-        return 0;
-    else
-        return 1;
-}
-
-void heapify_delete()
-{
-    int index = 0;
-
-    pQueue[0] = pQueue[rear_];
-    rear_--;
-
-    while (1)
-    {
-        if (checkForLP(index) && checkForRP(index))
-        {
-            if (pQueue[leftChildIndex(index)] < pQueue[index] || pQueue[rightChildIndex(index)] < pQueue[index])
-            {
-                if (pQueue[leftChildIndex(index)] <= pQueue[rightChildIndex(index)])
-                {
-                    swap(index, leftChildIndex(index));
-                    index = leftChildIndex(index);
-                }
-                else
-                {
-                    swap(index, rightChildIndex(index));
-                    index = rightChildIndex(index);
-                }
-            }
-            else
-                return;
-        }
-
-        else if (checkForRP(index) == 0)
-        {
-            if (pQueue[leftChildIndex(index)] < pQueue[index])
-            {
-                swap(index, leftChildIndex(index));
-                index = leftChildIndex(index);
-            }
-            else
-                return;
-        }
+        if (lastElement > heap[child]) //swapping the elements...
+            heap[index] = heap[child];
 
         else
-            return;
+            break;
     }
+    heap[index] = lastElement;
+    return minElement;
 }
+
