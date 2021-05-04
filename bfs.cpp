@@ -58,8 +58,9 @@ int main (void)
                 q.push(u);
                 d[u] = d[v] + 1;
                 if(d[u] > 1 && count < k){
-                    p.pb(u);
+                    // p.pb(u);
                     count++;
+                    // display user info here
                 }
             }
         }
@@ -68,9 +69,9 @@ int main (void)
         }
     }
 
-    for(auto s: p){
-        cout << s+1 << " ";
-    }
+    // for(auto s: p){
+    //     cout << s+1 << " ";
+    // }
     cout << endl;
 
 
