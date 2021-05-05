@@ -10,55 +10,70 @@
 //PRIORITY QUEUE
 //////////
 
-///////////NEW SERIES OF CODE BEGINS HERE///////////
+//*****NEW SERIES OF CODE BEGINS HERE*****//
 
-long heap[max_size], heapSize = 0;
-
-
-void InsertToHeap(long element) //index from the array 1 to max_size.......***parent to index is index/2***.....
+struct minHeap* initHeap(void)
 {
-    heapSize++;
-    heap[heapSize] = element;
-    int index = heapSize;
-    while (heap[index / 2] > element)
+    struct minHeap* temp = (struct minHeap*)malloc(sizeof(struct minHeap));
+    assert(temp!=NULL);
+    temp->heapSize = 0;
+    temp->heap = (int *)malloc(100000*sizeof(int));
+    assert(temp->heap!=NULL);
+    return temp;
+}
+
+
+void InsertToHeap(struct minHeap * heap1,int element)    //index from the array 1 to max_size.......***parent to index is index/2***.....
+{
+    heap1->heapSize++;
+    heap1->heap[heap1->heapSize] = element; 
+    int index = heap1->heapSize;
+    while (heap1->heap[index / 2] > element)
     {
-        heap[index] = heap[index / 2];
+        heap1->heap[index] = heap1->heap[index / 2];
         index /= 2;
     }
-    heap[index] = element;
+    heap1->heap[index] = element;
 }
 
-int CheckIsEmpty()            //return 0 if it is empty
+int extractMin(struct minHeap * heap1)
 {
-    if ( heapSize ) return 1;
-    else return 0;
-}
-long extractMin()
-{
-    long minElement, lastElement;
-    int child, index;
+    int minElement, lastElement, child, index;
 
-    minElement = heap[1];
-    lastElement = heap[heapSize];
-    heapSize--;
+    minElement = heap1->heap[1];
+    lastElement = heap1->heap[heap1->heapSize];
+    heap1->heapSize--;
+
     ///////////////////////////
-    //LEFT CHILD IS 2*index
+    //LEFT CHILD IS 2*index 
     //RIGHT  CHILD IS left_child+1
     ///////////////////////////
 
-    for (index = 1; index * 2 <= heapSize; index = child)
+    for (index = 1; index * 2 <= heap1->heapSize; index = child)
     {
         child = index * 2;
-        if (child != heapSize && heap[child + 1] < heap[child]) //right child condition...
+        if (child != heap1->heapSize && heap1->heap[child + 1] < heap1->heap[child])    //right child condition...
             child++;
-
-        if (lastElement > heap[child]) //swapping the elements...
-            heap[index] = heap[child];
-
-        else
+        
+        if (lastElement > heap1->heap[child])                             //swapping the elements...
+            heap1->heap[index] = heap1->heap[child];
+ 
+        else 
             break;
     }
-    heap[index] = lastElement;
+    heap1->heap[index] = lastElement;
     return minElement;
 }
 
+
+int CheckIsEmpty(struct minHeap * heap1)            //return 0 if it is empty
+{
+    if ( heap1->heapSize ) return 1;
+    else return 0;
+}
+
+
+void freeHeap(struct minHeap* heap1)              //free the memory of the heap
+{
+    free(heap1);
+}

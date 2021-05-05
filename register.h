@@ -6,6 +6,6 @@
  
 
 
-unsigned long idAllocation(); //allocate the least available unique id to the user.....
+int idAllocation(struct minHeap* heap); //allocate the least available unique id to the user.....
 
 #endif
