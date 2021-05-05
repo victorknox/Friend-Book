@@ -192,5 +192,18 @@ void removeval(int check_id,friends* Q)
 }
 
 
+void removeall(friends *Q)
+{
+  for (int i = 0; i < Q->capacity; i++)
+  {
+    data *S = Q->friend[i]->next;
+    while (S != NULL)
+    {
+      removeval(S->user_id, Q);
+      S = S->next;
+    }
+  }
+  Q->num_added=0;
+}
 
 
