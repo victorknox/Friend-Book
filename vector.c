@@ -128,8 +128,8 @@ int vectortotal(friends *S)
 
 void add(long long int user_id, friends **S)
 {
-  if(checkfriendshipstatus((*S),user_id==0)
-  {
+  if(checkfriendshipstatus(*S,user_id)==1)
+  return;
     if ((*S)->num_added+1 % ((*S)->capacity) != 0)
     {
       long long int p = hash(user_id, (*S)->capacity);
@@ -170,7 +170,6 @@ void add(long long int user_id, friends **S)
       }
     }
     (*S)->num_added++;
-  }
 }
 
 void removeval(int check_id,friends* Q)
