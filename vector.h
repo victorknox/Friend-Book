@@ -29,6 +29,7 @@ int checkfriendshipstatus(friends *S, long long int check_id);
 int isEmpty(friends *S);
 int vectortotal(friends *S);
 void removeval(int check_id,friends* Q);
+void removeall(friends *Q);
 
 
 
