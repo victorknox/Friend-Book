@@ -56,6 +56,10 @@ void removeval(int check_id,friends* Q): It removes the friend with a given id a
 
 
 
+void removeall(friends *Q): It removes all friends of the person. Useful in deleting a person completely.
+
+
+
 An example of the main function that I have used::
 
 #include <stdio.h>
