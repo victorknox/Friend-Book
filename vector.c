@@ -130,7 +130,7 @@ void add(long long int user_id, friends **S)
 {
   if(checkfriendshipstatus(*S,user_id)==1)
   return;
-    if ((*S)->num_added+1 % ((*S)->capacity) != 0)
+    if (((*S)->num_added+1) % ((*S)->capacity) != 0)
     {
       long long int p = hash(user_id, (*S)->capacity);
       if ((*S)->friend[p] -> next == NULL)
