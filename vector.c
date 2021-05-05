@@ -130,7 +130,6 @@ void add(long long int user_id, friends **S)
 {
   if(checkfriendshipstatus((*S),user_id==0)
   {
-    (*S)->num_added++;
     if ((*S)->num_added % ((*S)->capacity) != 0)
     {
       long long int p = hash(user_id, (*S)->capacity);
@@ -170,6 +169,7 @@ void add(long long int user_id, friends **S)
         q->next->user_id = user_id;
       }
     }
+    (*S)->num_added++;
   }
 }
 
