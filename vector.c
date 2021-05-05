@@ -174,6 +174,7 @@ void add(long long int user_id, friends **S)
 
 void removeval(int check_id,friends* Q)
 {
+  int m=0;
   long long int p=hash(check_id, Q->capacity);
   while(Q->friend[p]->next!=NULL)
   {
@@ -183,10 +184,12 @@ void removeval(int check_id,friends* Q)
       P=Q->friend[p]->next;
       Q->friend[p]->next=Q->friend[p]->next->next;
       free(P);
+      m=1;
       break;
     }
     Q->friend[p]->next=Q->friend[p]->next->next;
   }
+  if(m==1)
   Q->num_added--;
 }
 
