@@ -7,20 +7,16 @@
 
 void unregister(long long int id, user_list *userlist) //unregisters a person from the database(say A)
 {
-
-      int listsize = userlist->capacity;
-
       // This first part removes A from all the friends lists of A's antifriends
 
-      user* user_tbr = userlist->array_of_users[hash(id, listsize)]; //finds the struct of A in userlist
-      for (int i = 0; i < user_tbr->aflist->capacity; i++)           //traverses antifriendlist of A
+      user *user_tbr = userlist->array_of_users[id];       //finds the struct of A in userlist
+      for (int i = 0; i < user_tbr->aflist->capacity; i++) //traverses antifriendlist of A
       {
             data *P = user_tbr->aflist->antifriend[i];
             while (P->next != NULL)
             {
-                  int k = hash(P->user_id, listsize); //finds the struct of B(an antifriend of A) in userlist
-                  friends *ff = userlist->array_of_users[k]->flist;    //access friend list of B
-                  removeval(id, ff);                  //removes A from friends list of B
+                  friends *ff = userlist->array_of_users[P->user_id]->flist; //access friend list of B(an antifriend of A)
+                  removeval(id, ff);                                         //removes A from friends list of B
                   P = P->next;
             }
       }
@@ -32,9 +28,8 @@ void unregister(long long int id, user_list *userlist) //unregisters a person fr
             data *Q = user_tbr->flist->friend[i];
             while (Q->next != NULL)
             {
-                  int j = hash(Q->user_id, listsize);    //finds the struct of C(a friend of A) in userlist
-                  antifriends *aff = userlist->array_of_users[j]->aflist; //access antifriend list of C
-                  removeval1(id, aff);                   //removes A from antifriends list of C
+                  antifriends *aff = userlist->array_of_users[Q->user_id]->aflist; //access antifriend list of C(a friend of A)
+                  removeval1(id, aff);                                    //removes A from antifriends list of C
                   Q = Q->next;
             }
       }
