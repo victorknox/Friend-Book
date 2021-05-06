@@ -180,32 +180,31 @@ void add(long long int user_id, friends **S)      //It is the add function to ad
         q->next->user_id = user_id;
       }
     }
-    (*S)->num_added++;
+    (*S)->num_added++;                            //Since a user_id has been added it increments the number added
 }
 
 void removeval(int check_id,friends* Q)         //Removes a particular user id given the person from which it has to be deleted and the user id
 {
     int m=0;
   long long int p=hash(check_id, Q->capacity);
-  while(Q->friend[p]->next!=NULL)
+  while(Q->friend[p]->next!=NULL)               //Checks for the particular user id and 'm' indicates if such value is there or not
   {
     if(Q->friend[p]->next->user_id==check_id)
     {
       data* P=createdata();
       P=Q->friend[p]->next;
       Q->friend[p]->next=Q->friend[p]->next->next;
-      //free(P);
       m=1;
       break;
     }
     Q->friend[p]->next=Q->friend[p]->next->next;
   }
-  if(m==1)
+  if(m==1)                                    //if such user id is there it decrements the number added
   Q->num_added--;
 }
 
 
-void removeall(friends *Q)                  //Empties the list of all the friends of the person
+void removeall(friends *Q)                  //Empties the list of all the friends of the person one at a time using removeval function
 {
   for (int i = 0; i < Q->capacity; i++)
   {
