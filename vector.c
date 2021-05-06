@@ -220,3 +220,21 @@ void removeall(friends *Q)                  //Empties the list of all the friend
   Q->num_added=0;
 }
 
+
+void printall(friends *Q)     //prints all the friends of the person
+{
+  for (int i = 0; i < Q->capacity; i++)     //traverses the whole hash table
+  {
+    data *S = Q->friend[i]->next;
+    while (S != NULL)
+    {
+      printf("%d\n",S->user_id);
+      S = S->next;
+    }
+  } 
+}
+
+
+
+
+
