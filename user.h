@@ -16,7 +16,6 @@ typedef struct user_profile
     char* city;
     char* country;
     char* hobby; //Contains only 1 hobby (User's favourite hobby)
-    unsigned short int cfrating;
     char* organization;
 
     list followers;
