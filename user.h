@@ -1,8 +1,18 @@
+#include <stdio.h>
+#include <stdlib.h>
 #include "vector.h"
 #include "aflist.h"
 
+#define ll long long
+
 #ifndef __USER_H
 #define __USER_H
+
+typedef struct adjacency_list
+{
+      int ID[1000]; //Placeholder
+                    //This has to be done using vectors and hashtables
+} list;
 
 typedef struct user_profile
 {
@@ -13,7 +23,6 @@ typedef struct user_profile
       char *city;
       char *country;
       char *hobby; //Contains only 1 hobby (User's favourite hobby)
-      unsigned short int cfrating;
       char *organization;
 
       friends *flist;
@@ -21,3 +30,35 @@ typedef struct user_profile
 } user;
 
 #endif
+
+// an array of pointers, each pointer points to a user
+typedef struct user_list
+{
+      long long largest_user_ID;
+      long long capacity;
+      user **array_of_users;
+} user_list;
+
+// function to resize array of users
+void resize_user_array(user_list *P)
+{
+      ll cap = P->capacity;
+      printf("\n%lld\n", P->capacity);
+      if (P->capacity - P->largest_user_ID <= 10)
+      {
+            P->capacity *= 100;
+
+            P->array_of_users = (user **)realloc(P->array_of_users, sizeof(user *) * P->capacity);
+      }
+}
+
+user_list *create_user_list()
+{
+      user_list *P = (user_list *)malloc(sizeof(user_list));
+
+      P->capacity = 15;
+      P->largest_user_ID = 0;
+      P->array_of_users = (user **)malloc(sizeof(user *) * P->capacity);
+
+      return P;
+}
