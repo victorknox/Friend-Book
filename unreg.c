@@ -1,117 +1,44 @@
+#include "vector.h"
+#include "user.h"
+#include "aflist.h"
 #include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
 
-#define min_no_frds 20
-typedef struct data data;
-typedef struct friends friends;
-typedef struct antifriends antifriends;
-typedef struct flist flist;
-typedef struct aflist aflist;
+//minor changes pending
+//userlist is a placeholder(my own userlist)
+//will add aflist later
+//user.h has minor change
+//vector.h is from Girija's branch
 
-struct flist //friends hashtable
+void unregister(long long int id, user *userlist, int listsize) //unregisters a person from the database(say A)
 {
-      int size;          //tablesize
-      friends *frlist[]; //array of pointers to individual friends lists(pointers to friends structs)
-};
+      // This first part removes A from all the friends lists of A's antifriends
 
-struct aflist //antifriends hashtable
-{
-      int size;               //tablesize
-      antifriends *afrlist[]; //array of pointers to individual antifriends lists(pointers to antifriends structs)
-};
-
-struct data
-{
-      int user_id;
-      data *next;
-};
-
-struct friends
-{
-      int capacity;
-      int num_added;
-      data self;
-      data *friend[];
-};
-
-struct antifriends
-{
-      int capacity;
-      data self;
-      data *antifriend[];
-};
-
-#ifndef __HEE_H
-#define __HEE_H
-
-#define max_size 100000
-
-long extractMin();               //return the min element and then makes the heap a min heap again.
-void InsertToHeap(long element); // inserts the element into the heap and then heapify.
-int CheckIsEmpty();              //returns 0 if the heap is empty.
-
-#endif
-
-void unregister(flist F, aflist AF, long long int id)
-{
-      int t = hash(id, AF.size); //finds the index(in AF list) of the id of the person to be removed(say B)
-
-      for (int i = 0; i < AF.afrlist[t]->capacity; i++) //traverse through the antifriends list of B
+      user user_tbr = userlist[hash(id, listsize)];       //finds the struct of A in userlist
+      for (int i = 0; i < user_tbr.aflist->capacity; i++) //traverses antifriendlist of A
       {
-            data *P = AF.afrlist[t]->antifriend[i];
-
+            data *P = user_tbr.aflist->antifriend[i];
             while (P->next != NULL)
             {
-                  int k = hash(P->user_id, F.size); //finds the index(in F list) of all the antifriends of B
-
-                  data *Q = F.frlist[k]->friend[hash(id, F.frlist[k]->capacity)];
-
-                  while (Q->next != NULL) //traverse through friends lists' of antifriends of B and finds and removes B from each
-                  {
-                        if (Q->next->user_id == id)
-                        {
-                              data *T = createdata();
-                              T = Q->next;
-                              Q->next = T->next;
-                              free(T);
-                              break;
-                        }
-
-                        Q = Q->next;
-                  }
-
+                  int k = hash(P->user_id, listsize); //finds the struct of B(an antifriend of A) in userlist
+                  friends *ff = userlist[k].flist;    //access friend list of B
+                  removeval(id, ff);                  //removes A from friends list of B
                   P = P->next;
             }
       }
 
-      int p = hash(id, F.size); //finds the index(in F list) of the id of the person to be removed(say B)
+      // This next part removes A from all the antifriends lists of A's friends
 
-      for (int j = 0; j < F.frlist[p]->capacity; j++) //traverse through the friends list of B
+      for (int i = 0; i < user_tbr.flist->capacity; i++) //traverses friendlist of A
       {
-            data *R = F.frlist[p]->friend[j];
-
-            while (R->next != NULL)
+            data *Q = user_tbr.flist->friend[i];
+            while (Q->next != NULL)
             {
-                  int l = hash(R->user_id, AF.size); //finds the index(in AF list) of all the friends of B
-
-                  data *S = AF.afrlist[l]->antifriend[hash(id, AF.afrlist[l]->capacity)];
-
-                  while (S->next != NULL) //traverse through antifriends lists' of friends of B and finds and removes B from each
-                  {
-                        if (S->next->user_id == id)
-                        {
-                              data *T = createdata();
-                              T = S->next;
-                              S->next = T->next;
-                              free(T);
-                              break;
-                        }
-
-                        S = S->next;
-                  }
-
-                  R = R->next;
+                  int j = hash(Q->user_id, listsize);    //finds the struct of C(a friend of A) in userlist
+                  antifriends *aff = userlist[j].aflist; //access antifriend list of C
+                  removeval1(id, aff);                   //removes A from antifriends list of C
+                  Q = Q->next;
             }
       }
-
-      InsertToHeap(id);
 }
