@@ -65,7 +65,13 @@ L1:
     //taking input for age
     printf("Enter your age: ");
     unsigned short int age;
-    scanf("%hd",&newUser->age);
+L2:
+    if (scanf("%hd", &newUser->age) == 0)
+    {
+        while ((getchar()) != '\n');                       //**clear the buffer as if it contains more than one charecter...**
+        printf("**ERROR**\nYou have not entered number, please re-enter the age properly.\n");
+        goto L2;
+    }
 
     //taking the input for the  city 
     memset(A,'\0',100*sizeof(char)); 
