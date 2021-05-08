@@ -37,6 +37,8 @@ int acceptinput(user_list *list, struct minHeap *heap)
         printf("Registering new user\n");
         user *temp = TakeInput(heap);
         list->array_of_users[temp->ID] = temp;
+
+        // recommend_new(list, temp->ID);
     }
     else if (inp == 2)
     {
@@ -48,7 +50,11 @@ int acceptinput(user_list *list, struct minHeap *heap)
     else if (inp == 3)
     {
         printf("Recommend friends to existing user\n");
-        dummyfunc();
+        printf("Enter user id: ");
+        scanf("%d", &a);
+        printf("How many recommendations do you want: ");
+        scanf("%d", &b);
+        recommend_old(b, a, heap, list);
     }
     else if (inp == 4)
     {
