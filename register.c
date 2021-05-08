@@ -63,7 +63,7 @@ L1:
     //////////////////////
 
     //taking input for age
-    printf("Enter your age: ");
+    printf("Enter your age: ");                            //age is between 0 and 200
     unsigned short int age;
 L2:
     if (scanf("%hd", &newUser->age) == 0)
@@ -71,6 +71,14 @@ L2:
         while ((getchar()) != '\n');                       //**clear the buffer as if it contains more than one charecter...**
         printf("**ERROR**\nYou have not entered number, please re-enter the age properly.\n");
         goto L2;
+    }
+    else                                                 
+    {
+        if(newUser->age >=200 || newUser->age <0)
+        {
+            printf("**ERROR**\nYou have entered a huge number or a negetive age,\nPlease re-enter the age properly.\n");
+            goto L2;
+        }
     }
 
     //taking the input for the  city 
