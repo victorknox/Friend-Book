@@ -1,11 +1,7 @@
 #ifndef __USER_H
 #define __USER_H
 
-typedef struct adjacency_list
-{
-    int ID[1000];   //Placeholder
-                    //This has to be done using vectors and hashtables 
-}list;
+#include "vector.h"
 
 typedef struct user_profile
 {
@@ -18,8 +14,15 @@ typedef struct user_profile
     char* hobby; //Contains only 1 hobby (User's favourite hobby)
     char* organization;
 
-    list followers;
-    list following;
+    friends* followers;
+    friends* following;
 }user;
+
+// an array of pointers, each pointer points to a user
+typedef struct user_list{
+    long long largest_user_ID;
+    long long capacity;
+    user** array_of_users;
+} user_list;
 
 #endif
