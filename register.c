@@ -2,6 +2,7 @@
 #include <string.h>
 #include <stdbool.h>
 #include <stdlib.h>
+#include<assert.h>
 
 #include "priorityQueue.h"
 #include "register.h"
@@ -28,6 +29,7 @@ unsigned int idAllocation(struct minHeap *heap) //returns the least minimum id t
 
 user* TakeInput(struct minHeap *heap) //taking the input incase of the user registers
 {
+    char A[100];
     //system("clear");
     user *newUser = (user *)malloc(sizeof(user));
     // printf("**-----THANK U FOR INITIALSING THE REGISTERING WITH US-------**\n");
@@ -35,15 +37,17 @@ user* TakeInput(struct minHeap *heap) //taking the input incase of the user regi
     printf("\nYour unique ID is %d \n\n",newUser->ID);
 
     printf("Enter your name: ");
-    newUser->name = (char *)malloc(sizeof(char *));
-    scanf(" %[^\n]%*c", newUser->name); //scaning the name....
+    scanf(" %[^\n]%*c", A); //scaning the name....
+    newUser->name = (char *)malloc(strlen(A)*sizeof(char));
+    assert(newUser->name!=NULL);
+    strcpy(newUser->name,A);
 
     printf("\n\t\tWelcome %s!\n\nPlease enter your gender ", newUser->name);
 //goto loop for handling the errors of the user in the spelling...
 L1:
     printf("(Select one of male/female/other): ");
 
-    char gender[1000];
+    char gender[20];
     scanf("%[^\n]%*c", gender);
     if (strcmp(gender, "male") != 0 && strcmp(gender, "female") && strcmp(gender, "other"))
     {
@@ -64,24 +68,37 @@ L1:
     scanf("%hd",&newUser->age);
 
     //taking the input for the  city 
+    memset(A,'\0',100*sizeof(char)); 
     printf("Enter your city: ");
-    newUser->city = (char *)malloc(sizeof(char *));
-    scanf(" %[^\n]%*c", newUser->city);
+    scanf(" %[^\n]%*c", A);
+    newUser->city = (char *)malloc(strlen(A)*sizeof(char));
+    assert(newUser->city!=NULL);
+    strcpy(newUser->city,A);
 
     //taking the user's country
+    memset(A,'\0',100*sizeof(char));
     printf("Enter your country: ");
-    newUser->country = (char *)malloc(sizeof(char *));
-    scanf(" %[^\n]%*c", newUser->country);
+    scanf(" %[^\n]%*c", A);
+    newUser->country = (char *)malloc(strlen(A)*sizeof(char));
+    assert(newUser->country!=NULL);
+    strcpy(newUser->country,A);
 
     //taking the users most favourite hobby
+    memset(A,'\0',100*sizeof(char));
     printf("Enter your hobby (any 1): ");
-    newUser->hobby = (char *)malloc(sizeof(char *));
-    scanf(" %[^\n]%*c", newUser->hobby);
+    scanf(" %[^\n]%*c", A);
+    newUser->hobby = (char *)malloc(strlen(A)*sizeof(char));
+    assert(newUser->hobby!=NULL);
+    strcpy(newUser->hobby,A);
 
     //taking the organisation
+    memset(A,'\0',100*sizeof(char));
     printf("Enter your organisation: ");
-    newUser->organization = (char *)malloc(sizeof(char *));
-    scanf(" %[^\n]%*c", newUser->organization);
+    scanf(" %[^\n]%*c", A);
+    newUser->organization = (char *)malloc(strlen(A)*sizeof(char));
+    assert(newUser->organization!=NULL);
+    strcpy(newUser->organization,A);
+    
     printf("\n User successfully registered!\n\nTaking you to the main menu...");
     
     //Creating friends list
