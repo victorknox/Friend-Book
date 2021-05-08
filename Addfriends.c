@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include "vector.h"
 #include "user.h"
+#include "priorityQueue.h"
+
+extern unsigned int MASTER;
 
 void AddF(user_list *list, long long a, long long b)
 {
@@ -29,6 +32,18 @@ void AddSingleFriend(user_list *list)
     long long a, b;
     printf("Enter user ids of two users: \n");
     scanf("%lld%lld", &a, &b);
+    if(a>MASTER || list->array_of_users[a] == NULL)
+    {
+        printf("\n%lld is not a registered user !",a);
+        printf("\nTaking you back to the main menu...");
+        return;
+    }
+    if(b>MASTER || list->array_of_users[b] == NULL)
+    {
+        printf("\n%lld is not a registered user !",b);
+        printf("\nTaking you back to the main menu...");
+        return;
+    }
     printf("\nAdding %lld as a friend of %lld...", b, a);
     AddF(list, a, b);
 }

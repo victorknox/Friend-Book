@@ -70,7 +70,7 @@ void recommend_old(int k, long long userID, struct minHeap *heap, user_list* lis
             }
         }
     }
-        printf("\nWe have found %lld users for u to befriend!\n" , count);
+        printf("\nWe have found %lld users for you to befriend!\n" , count);
         // displays all recommended users info
         return;
     }

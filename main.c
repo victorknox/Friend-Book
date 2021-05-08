@@ -1,13 +1,16 @@
+#include <stdio.h>
+#include <stdlib.h>
 #include "user.h"
 #include "priorityQueue.h"
 #include "register.h"
 #include "functions.h"
 #include "vector.h"
 
-#include <stdio.h>
-#include <stdlib.h>
+extern unsigned int MASTER;
 
-void dummyfunc() {}
+void dummyfunc()
+{
+}
 
 void printUI()
 {
@@ -33,11 +36,13 @@ int acceptinput(user_list *list, struct minHeap *heap)
     char inp;
     int a, b;
     scanf(" %c", &inp);
+    while ((getchar()) != '\n');
     if (inp == '1')
     {
         printf("Registering new user\n");
         user *temp = TakeInput(heap);
         list->array_of_users[temp->ID] = temp;
+        resize_user_array(list);
 
         // recommend_new(list, temp->ID);
     }
@@ -49,12 +54,21 @@ int acceptinput(user_list *list, struct minHeap *heap)
     }
     else if (inp == '3')
     {
+
         printf("Recommend friends to existing user\n");
         printf("Enter user id: ");
         scanf("%d", &a);
-        printf("How many recommendations do you want: ");
-        scanf("%d", &b);
-        recommend_old(b, a, heap, list);
+        if (a > MASTER || list->array_of_users[a] == NULL)
+        {
+            printf("\n%lld is not a registered user !", a);
+            printf("\nTaking you back to the main menu...");
+        }
+        else
+        {
+            printf("How many recommendations do you want: ");
+            scanf("%d", &b);
+            recommend_old(b, a, heap, list);
+        }
     }
     else if (inp == '4')
     {
@@ -65,13 +79,26 @@ int acceptinput(user_list *list, struct minHeap *heap)
     {
         printf("Check friendship status! List 2 user ids!\n");
         scanf("%d%d", &a, &b);
-        if (checkfriendshipstatus(list->array_of_users[a]->following, b) == 1)
+        if (a > MASTER || list->array_of_users[a] == NULL)
         {
-            printf("\nYes, they are friends!");
+            printf("\n%lld is not a registered user !", a);
+            printf("\nTaking you back to the main menu...");
+        }
+        if (b > MASTER || list->array_of_users[b] == NULL)
+        {
+            printf("\n%lld is not a registered user !", b);
+            printf("\nTaking you back to the main menu...");
         }
         else
         {
-            printf("\nNo, they aren't friends!");
+            if (checkfriendshipstatus(list->array_of_users[a]->following, b) == 1)
+            {
+                printf("\nYes, they are friends!");
+            }
+            else
+            {
+                printf("\nNo, they aren't friends!");
+            }
         }
     }
     else if (inp == '6')
@@ -79,7 +106,15 @@ int acceptinput(user_list *list, struct minHeap *heap)
         printf("Printing parameters of a user\n");
         int tempID;
         scanf("%d", &tempID);
-        userDetails(list->array_of_users[tempID]);
+        if (tempID > MASTER || list->array_of_users[tempID] == NULL)
+        {
+            printf("\n%lld is not a registered user !", tempID);
+            printf("\nTaking you back to the main menu...");
+        }
+        else
+        {
+            userDetails(list->array_of_users[tempID]);
+        }
     }
     else if (inp == '0')
     {

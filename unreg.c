@@ -1,6 +1,9 @@
 #include "vector.h"
 #include "user.h"
 #include "priorityQueue.h"
+#include "register.h"
+
+extern unsigned int MASTER;
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -8,12 +11,14 @@
 
 void unregister(long long int id, user_list *userlist, struct minHeap *heap) //unregisters a person from the database(say A)
 {
-      // This first part removes A from all the friends lists of A's antifriends
-      if (userlist->array_of_users[id] == NULL)
+      if (id > MASTER || userlist->array_of_users[id] == NULL)
       {
-            printf("User isn't registered!\n");
+            printf("\n%lld is not a registered user !", id);
+            printf("\nTaking you back to the main menu...");
             return;
       }
+
+      // This first part removes A from all the friends lists of A's antifriends
 
       InsertToHeap(heap, id);
 
@@ -21,7 +26,7 @@ void unregister(long long int id, user_list *userlist, struct minHeap *heap) //u
       for (int i = 0; i < user_tbr->followers->capacity; i++) //traverses antifriendlist of A
       {
             data *P = user_tbr->followers->friend[i];
-            while (P!= NULL)
+            while (P != NULL)
             {
                   if (P->user_id == 0)
                   {
@@ -39,7 +44,7 @@ void unregister(long long int id, user_list *userlist, struct minHeap *heap) //u
       for (int i = 0; i < user_tbr->following->capacity; i++) //traverses friendlist of A
       {
             data *Q = user_tbr->following->friend[i];
-            while (Q!= NULL)
+            while (Q != NULL)
             {
                   if (Q->user_id == 0)
                   {
