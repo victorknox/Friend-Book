@@ -18,7 +18,7 @@ void insert(node* header, int ID)
     nw->ID = ID;
 
     (header->ID)++;
-    header->next = nw->next;
+    nw->next = header->next;
     header->next = nw;
 }
 
@@ -61,16 +61,17 @@ void recommend_new(const user_list *list, long long ID)
             continue;
         }
         int common = fcommon(list->array_of_users[ID], list->array_of_users[q]);
+        printf("User %d, %d common parameters\n", q, common);
         insert(&header[common], q);
-        // header[common]++;
+        (header[common].ID)++;
     }
 
-    for(int q=7; q>0 && recommendations>0; q++)
+    for(int q=7; q>=0 && recommendations>0; q--)
     {
         if(header[q].ID > recommendations)
         {
             // selectRandom(header[q], recommendations);
-            printf("print %d out of %d users with %d common parameters\n", recommendations, header[q].ID, q);
+            printf("print %d out of %lld users with %d common parameters\n", recommendations, header[q].ID, q);
             break;
         }
         else
@@ -80,6 +81,7 @@ void recommend_new(const user_list *list, long long ID)
             {
                 printf("%d) User ID: %lld\n", (11-recommendations), temp->ID);
                 recommendations--;
+                temp=temp->next;
             }
         }
     }
