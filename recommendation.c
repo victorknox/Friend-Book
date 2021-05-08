@@ -4,20 +4,14 @@
 #include "Queue.h"
 #define ll long long
 #define n 10000
+
+
 // recommend_old(k, userID);
-
-
-// queue Makequeue();
-// void push(PtrToNode H, ElementType y);//push(H,y) is equivalent to push(y)
-// void pop(PtrToNode H);//pop(H) is equivalent to pop()
-// bool empty(PtrToNode H);//empty(H) is equivalent to empty() [returns true or false]
-// PtrToNode front(PtrToNode H);//front(H) is equivalent to front() [returns pointer to first element of queue]
-// PtrToNode back(PtrToNode T);//back(T) is equivalent to back() [returns pointer to last element of queue]
 
 
 // things needed to execute the function -> no.of.registered users, k,
 // friends lists of every user, userID(of the person who needs user recomm)
-int main(void){
+void recommend_old(int k,ll userID){
 
     // to make the queue
     PtrToNode H = Makequeue();
@@ -27,9 +21,9 @@ int main(void){
     
     
     ll no_of_registered_users;
-    ll s, k, count = 0;
-    bool visited[n] = {0};
-    ll distance[n] = {0}; // stores dist from array
+    ll s = userID , k, count = 0;
+    bool visited[n] = {0}; // n here is the total number of registered users
+    ll distance[n] = {0}; // stores dist from first user
     
     push(H,s); // s is the userID
     visited[s] = true;
@@ -37,13 +31,15 @@ int main(void){
     ll recommend[k];
     bool breakflag = false;
     ll last = n;
+
     while(!empty(H)){
         ll v = front(H);
         pop(H);
-        ll listsize;
-        // make the traversal random
-        for(int i = 0; i < listsize; i++) // traversing through the "following" list of v
+        ll listsize; // number of friends of v
+
+        for(int i = 0; i < userlist[s]->friends->capacity ; i++) // traversing through the "following"/friends list of v
         {
+
             ll u; // a friend of v
             if(!visited[u]){
                 visited[u] = true;
@@ -53,20 +49,10 @@ int main(void){
                     recommend[count] = u;
                     count++;
                     // display the users info
-
-
-                    // if(count == k){
-                    //     last = distance[u];        }
-                    // }
+                    printf("\n%lld: userID:  username: " , count);
                 }
-                // if(distance[u] > last){
-                //     breakflag = true;
-                //     break;
-                // }
             }
-            // if(breakflag){
-            //     break;
-            // }
+
             if(count >= k){
                 break;
             }
