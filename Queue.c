@@ -18,7 +18,7 @@ typedef struct node *queue;
 //H and T are dummy nodes pointing to the beginning and end of the queue respectively
 
 queue Makequeue();
-void push(PtrToNode H, ElementType y);//push(H,y) is equivalent to push(y)
+void push(PtrToNode T, ElementType y);//push(H,y) is equivalent to push(y)
 void pop(PtrToNode H);//pop(H) is equivalent to pop()
 bool empty(PtrToNode H);//empty(H) is equivalent to empty() [returns true or false]
 PtrToNode front(PtrToNode H);//front(H) is equivalent to front() [returns pointer to first element of queue]
