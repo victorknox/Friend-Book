@@ -46,7 +46,6 @@ int acceptinput(user_list *list, struct minHeap *heap)
         printf("Unregister existing user\n");
         scanf("%d", &a);
         unregister(a, list, heap);
-        printf("Succesfully unregistered %d\n", a);
     }
     else if (inp == '3')
     {
