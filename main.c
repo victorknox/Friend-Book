@@ -32,7 +32,7 @@ int acceptinput(user_list *list, struct minHeap *heap)
     printf("\nEnter choice: ");
     char inp;
     int a, b;
-    scanf("%c", &inp);
+    scanf(" %c", &inp);
     if (inp == '1')
     {
         printf("Registering new user\n");
