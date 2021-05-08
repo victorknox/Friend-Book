@@ -21,7 +21,7 @@ void unregister(long long int id, user_list *userlist, struct minHeap *heap) //u
       for (int i = 0; i < user_tbr->followers->capacity; i++) //traverses antifriendlist of A
       {
             data *P = user_tbr->followers->friend[i];
-            while (P->next != NULL)
+            while (P!= NULL)
             {
                   if (P->user_id == 0)
                   {
@@ -39,7 +39,7 @@ void unregister(long long int id, user_list *userlist, struct minHeap *heap) //u
       for (int i = 0; i < user_tbr->following->capacity; i++) //traverses friendlist of A
       {
             data *Q = user_tbr->following->friend[i];
-            while (Q->next != NULL)
+            while (Q!= NULL)
             {
                   if (Q->user_id == 0)
                   {
