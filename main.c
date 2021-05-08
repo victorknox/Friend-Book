@@ -30,9 +30,10 @@ void printUI()
 int acceptinput(user_list *list, struct minHeap *heap)
 {
     printf("\nEnter choice: ");
-    int inp, a, b;
-    scanf("%d", &inp);
-    if (inp == 1)
+    char inp;
+    int a, b;
+    scanf("%c", &inp);
+    if (inp == '1')
     {
         printf("Registering new user\n");
         user *temp = TakeInput(heap);
@@ -40,14 +41,14 @@ int acceptinput(user_list *list, struct minHeap *heap)
 
         // recommend_new(list, temp->ID);
     }
-    else if (inp == 2)
+    else if (inp == '2')
     {
         printf("Unregister existing user\n");
         scanf("%d", &a);
         unregister(a, list, heap);
         printf("Succesfully unregistered %d\n", a);
     }
-    else if (inp == 3)
+    else if (inp == '3')
     {
         printf("Recommend friends to existing user\n");
         printf("Enter user id: ");
@@ -56,12 +57,12 @@ int acceptinput(user_list *list, struct minHeap *heap)
         scanf("%d", &b);
         recommend_old(b, a, heap, list);
     }
-    else if (inp == 4)
+    else if (inp == '4')
     {
         printf("Add friend\n");
         AddSingleFriend(list);
     }
-    else if (inp == 5)
+    else if (inp == '5')
     {
         printf("Check friendship status! List 2 user ids!\n");
         scanf("%d%d", &a, &b);
@@ -74,14 +75,14 @@ int acceptinput(user_list *list, struct minHeap *heap)
             printf("\nNo, they aren't friends!");
         }
     }
-    else if (inp == 6)
+    else if (inp == '6')
     {
         printf("Printing parameters of a user\n");
         int tempID;
         scanf("%d", &tempID);
         userDetails(list->array_of_users[tempID]);
     }
-    else if (inp == 0)
+    else if (inp == '0')
     {
         printf("Exiting!\nThank you for using this service\n");
         dummyfunc();
@@ -99,8 +100,8 @@ int main()
     user_list *list = create_user_list();
     struct minHeap *heap = initHeap();
 
-    int inp = 1;
-    while (inp != 0)
+    char inp = '1';
+    while (inp != '0')
     {
         printUI();
         inp = acceptinput(list, heap);
