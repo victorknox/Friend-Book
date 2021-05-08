@@ -23,7 +23,6 @@ void recommend_old(int k, long long userID, struct minHeap *heap, user_list* lis
     H->Next = T;
     T->Prev = H;
 
-    ll no_of_registered_users;
     ll s = userID, count = 0;
     bool visited[n+1]; // n here is the total number of registered users
     ll distance[n+1];  // stores dist from first user
@@ -37,21 +36,19 @@ void recommend_old(int k, long long userID, struct minHeap *heap, user_list* lis
     push(T, s); // s is the userID
     visited[s] = true;
     distance[s] = 0;
-    // ll recommend[k];
-    // bool breakflag = false;
-    // ll last = n;
 
+    // executing BFS over the data
     while (!empty(H))
     {
         int v = front(H)->x; // v is a user
         pop(H);
 
-        for (int i = 0; i < list->array_of_users[v]->following->capacity; i++)
+        for (int i = 0; i < list->array_of_users[v]->following->capacity; i++) // traversing through the friends list of v
         {
             data *S = list->array_of_users[v]->following->friend[i] -> next;
             while (S != NULL)
             {
-                ll u = S->user_id; // a friend of v
+                ll u = S->user_id; // u is a friend of v
                 if (!visited[u])
                 {
                     visited[u] = true;
@@ -59,9 +56,8 @@ void recommend_old(int k, long long userID, struct minHeap *heap, user_list* lis
                     distance[u] = distance[v] + 1;
                     if (distance[u] > 1 && count < k)
                     {
-                        // recommend[count] = u;
                         count++;
-                        // display the users info
+                        // displays the users info
                         printf("\n%lld: userID:%lld  username: %s", count , u, list->array_of_users[u]->name);
                     }
                 }
@@ -74,32 +70,8 @@ void recommend_old(int k, long long userID, struct minHeap *heap, user_list* lis
             }
         }
     }
-        // for (int i = 0; i < userlist[s]->friends->capacity; i++) // traversing through the "following"/friends list of v
-        // {
-
-        //     ll u; // a friend of v
-        //     if (!visited[u])
-        //     {
-        //         visited[u] = true;
-        //         push(H, u);
-        //         distance[u] = distance[v] + 1;
-        //         if (distance[u] > 1 && count < k)
-        //         {
-        //             recommend[count] = u;
-        //             count++;
-        //             // display the users info
-        //             printf("\n%lld: userID:  username: ", count);
-        //         }
-        //     }
-
-        //     if (count >= k)
-        //     {
-        //         break;
-        //     }
-        // }
+        printf("\nWe have found %lld users for u to befriend!\n" , count);
         // displays all recommended users info
         return;
     }
-
-    /* things needed to complete - 1) hash tables of registered users, basically following list of every user
-                               2) number of registered users, if i can traverse i can do this function */
+    
