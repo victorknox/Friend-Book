@@ -52,17 +52,18 @@ void unregister(long long int id, user_list *userlist, struct minHeap *heap) //u
             }
       }
 
-      free(&userlist->array_of_users[id]->age);
       free(userlist->array_of_users[id]->city);
       free(userlist->array_of_users[id]->country);
       free(userlist->array_of_users[id]->followers);
       free(userlist->array_of_users[id]->following);
-      free(&userlist->array_of_users[id]->gender);
+
       free(userlist->array_of_users[id]->hobby);
-      free(&userlist->array_of_users[id]->ID);
+
       free(userlist->array_of_users[id]->name);
       free(userlist->array_of_users[id]->organization);
       free(userlist->array_of_users[id]);
 
       userlist->array_of_users[id] = NULL;
+
+      printf("Succesfully unregistered %lld\n", id);
 }
