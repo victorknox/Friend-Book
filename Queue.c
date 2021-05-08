@@ -2,7 +2,42 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
+<<<<<<< HEAD
 #include "Queue.h"
+=======
+typedef int ElementType;
+
+struct node
+{
+      ElementType x;
+      struct node *Next;
+      struct node *Prev;
+};
+
+typedef struct node Node;
+typedef struct node *PtrToNode;
+typedef struct node *queue;
+
+//H and T are dummy nodes pointing to the beginning and end of the queue respectively
+
+queue Makequeue();
+void push(PtrToNode T, ElementType y);//push(H,y) is equivalent to push(y)
+void pop(PtrToNode H);//pop(H) is equivalent to pop()
+bool empty(PtrToNode H);//empty(H) is equivalent to empty() [returns true or false]
+PtrToNode front(PtrToNode H);//front(H) is equivalent to front() [returns pointer to first element of queue]
+PtrToNode back(PtrToNode T);//back(T) is equivalent to back() [returns pointer to last element of queue]
+
+/* 
+Use these 4 lines while executing(before using these functions):
+
+PtrToNode H = Makequeue();
+PtrToNode T = Makequeue();
+H->Next = T;
+T->Prev = H;
+
+*/
+
+>>>>>>> 666e7fa40a4850f9dd9802d04ad1753a2e893a74
 
 queue Makequeue()
 {
