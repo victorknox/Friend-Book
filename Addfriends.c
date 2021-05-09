@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <ctype.h>
 #include "vector.h"
 #include "user.h"
 #include "priorityQueue.h"
@@ -14,17 +15,28 @@ void AddF(user_list *list, long long a, long long b)
 void AddMultipleFriends(user_list *list, long long a)
 {
     // adding multiple users as friends to a user
-    long long x;
-    printf("Select the number of friends u want to add: ");
-        scanf("%lld", &x);
-    printf("please provide the user IDs of friends u would like to add to %lld", a);
-    long long b;
-    for (int i = 0; i < x; i++)
-    {
-        scanf("%lld", &b);
-        printf("\nAdding %lld as a friend of %lld...", b, a);
+    printf("would you like to add any of these users as your friends? (y/n) :");
+    char inp;
+    Line:
+    scanf("%c" , &inp);
+    inp = tolower(inp);
+    if(inp != 'y' && inp != 'n'){
+        printf("\nError! choose one of (y/n)");
+        goto Line;
     }
-    printf("\nAdded all the friends !");
+    if(inp == 'y'){
+        long long x;
+        printf("\nSelect the number of friends u want to add: ");
+            scanf("%lld", &x);
+        printf("\nplease provide the user IDs of friends u would like to add to %lld", a);
+        long long b;
+        for (int i = 0; i < x; i++)
+        {
+            scanf("%lld", &b);
+            printf("\nAdding %lld as a friend of %lld...", b, a);
+        }
+        printf("\nAdded all the friends !");
+    }
 }
 
 void AddSingleFriend(user_list *list)

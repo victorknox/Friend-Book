@@ -45,7 +45,7 @@ int acceptinput(user_list *list, struct minHeap *heap)
         resize_user_array(list);
 
         recommend_new(list, temp->ID);
-        
+        AddMultipleFriends(list, temp->ID);
         printf("Taking you to the main menu...\n");
     }
     else if (inp == '2')

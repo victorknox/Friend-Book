@@ -6,6 +6,7 @@
 #include "user.h"
 #include "Queue.h"
 #include "vector.h"
+#include "functions.h"
 #define ll long long
 
 extern unsigned int MASTER;
@@ -71,6 +72,9 @@ void recommend_old(int k, long long userID, struct minHeap *heap, user_list* lis
         }
     }
         printf("\nWe have found %lld users for you to befriend!\n" , count);
+        if(count > 0){
+            AddMultipleFriends(list, userID);
+        }
         // displays all recommended users info
         return;
     }
