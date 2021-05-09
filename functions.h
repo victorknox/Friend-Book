@@ -12,4 +12,5 @@ void recommend_old(int k, long long userID, struct minHeap *heap, user_list* lis
 
 void recommend_new(const user_list *list, long long ID);
 
+void AddMultipleFriends(user_list *list, long long a);
 #endif
