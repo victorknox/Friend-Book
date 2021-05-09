@@ -18,7 +18,7 @@ void resize_user_array(user_list* P){
 user_list* create_user_list(){
     user_list* P = (user_list*)malloc(sizeof(user_list));
 
-    P->capacity = 15;
+    P->capacity = 10;
     P->array_of_users = (user**)malloc(sizeof(user*)* P->capacity);
 
     return P;
