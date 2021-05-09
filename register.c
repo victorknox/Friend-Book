@@ -138,4 +138,5 @@ void userDetails(user* userAddress)
     printf("City        : %s\n",userAddress->city);
     printf("Country     : %s\n",userAddress->country);
     printf("Hobby       : %s\n",userAddress->hobby);
+    printf("Organization: %s\n",userAddress->organization);
 }
