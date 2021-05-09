@@ -6,6 +6,7 @@ Hyderabad
 India
 Gaming
 IIITH
+n
 1
 Sambasai
 male
@@ -14,6 +15,7 @@ Hyderabad
 India
 Binging
 IIITH
+n
 1
 Samarth
 male
@@ -22,6 +24,7 @@ Raipur
 India
 Badminton
 IITK
+n
 1
 John
 male
@@ -30,6 +33,7 @@ New York
 USA
 Coding
 Princeton
+n
 1
 David
 male
@@ -38,6 +42,7 @@ Sydney
 Australia
 Surfing
 SAP
+n
 1
 Vedant
 male
@@ -46,6 +51,7 @@ Mumbai
 India
 Fun
 IIITH
+n
 1
 Christina
 female
@@ -54,6 +60,7 @@ Melbourne
 Australia
 Painting
 SAP
+n
 1
 Scarlet
 female
@@ -62,6 +69,7 @@ New York
 Canada
 Gaming
 Riot
+n
 2
 4
 2
@@ -74,6 +82,7 @@ Paradis
 Philippines
 Attacking
 Eldia
+n
 1
 Swapna
 female
@@ -82,6 +91,7 @@ Mumbai
 India
 Badminton
 Sharp
+n
 4
 1 3
 4
