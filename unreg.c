@@ -14,7 +14,7 @@ void unregister(long long int id, user_list *userlist, struct minHeap *heap) //u
       if (id<=0 || id > MASTER || userlist->array_of_users[id] == NULL)
       {
             printf("\n%lld is not a registered user !", id);
-            printf("\nTaking you back to the main menu...");
+            // printf("\nTaking you back to the main menu...");
             return;
       }
 
