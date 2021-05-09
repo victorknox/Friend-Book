@@ -39,6 +39,7 @@ void AddMultipleFriends(user_list *list, long long a, long long count)
         {
             scanf("%lld", &b);
             printf("\nAdding %lld as a friend of %lld...", b, a);
+            AddF(list, a, b);
         }
         printf("\nAdded all the friends!\n");
     }
