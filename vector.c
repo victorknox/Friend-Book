@@ -194,6 +194,7 @@ void removeval(int check_id,friends* Q)         //Removes a particular user id g
       data* P=createdata();
       P=Q->friend[p]->next;
       Q->friend[p]->next=Q->friend[p]->next->next;
+      free(P);
       m=1;
       break;
     }
