@@ -74,7 +74,7 @@ void recommend_new(user_list *list, long long ID)
         //(header[common].ID)++;
     }
     if(count>10)
-        count==10;
+        count=10;
     printf("\n\nWe have found %d users for you to befriend! \n", count);
     for(int q=7; q>=0 && recommendations>0; q--)    //Iterates through all linked lists
     {                                               // first we recommend users with all 7 common parameters, then 6, then 5 and so on 
@@ -83,7 +83,7 @@ void recommend_new(user_list *list, long long ID)
             // selectRandom(header[q], recommendations);
             // printf("print %d out of %lld users with %d common parameters\n", recommendations, header[q].ID, q);
             node* temp = header[q].next;
-            while(recommendations>=0) //There are more people with same number of common parameters than there are users left to recommend
+            while(recommendations>0) //There are more people with same number of common parameters than there are users left to recommend
             {
                 printf("%d) User ID: %lld | User name: %s\n", (11-recommendations), temp->ID, list->array_of_users[temp->ID]->name);
                 recommendations--;

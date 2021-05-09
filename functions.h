@@ -1,6 +1,8 @@
 #ifndef __FUNC_C
 #define __FUNC_C
 
+// contains function prototypes for functions called in multiple files
+
 void resize_user_array(user_list* P);
 user_list* create_user_list();
 
