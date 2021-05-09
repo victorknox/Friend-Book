@@ -28,14 +28,6 @@ unsigned int idAllocation(struct minHeap *heap) //returns the least minimum id t
     return ++MASTER;
 }
 
-void lowercase(char s[])
-{
-    for (int i = 0; i<strlen(s); i++)
-    {
-        s[i] = tolower(s[i]);
-    }
-}
-
 user *TakeInput(struct minHeap *heap) //taking the input incase of the user registers
 {
     char A[100];
