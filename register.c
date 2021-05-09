@@ -2,7 +2,8 @@
 #include <string.h>
 #include <stdbool.h>
 #include <stdlib.h>
-#include<assert.h>
+#include <assert.h>
+#include <ctype.h>
 
 #include "priorityQueue.h"
 #include "register.h"
@@ -38,6 +39,7 @@ user* TakeInput(struct minHeap *heap) //taking the input incase of the user regi
 
     printf("Enter your name: ");
     scanf(" %[^\n]%*c", A); //scaning the name....
+    lowercase(A);           //case change
     newUser->name = (char *)malloc(strlen(A)*sizeof(char));
     assert(newUser->name!=NULL);
     strcpy(newUser->name,A);
@@ -85,6 +87,7 @@ L2:
     memset(A,'\0',100*sizeof(char)); 
     printf("Enter your city: ");
     scanf(" %[^\n]%*c", A);
+    lowercase(A);           //case change
     newUser->city = (char *)malloc(strlen(A)*sizeof(char));
     assert(newUser->city!=NULL);
     strcpy(newUser->city,A);
@@ -93,6 +96,7 @@ L2:
     memset(A,'\0',100*sizeof(char));
     printf("Enter your country: ");
     scanf(" %[^\n]%*c", A);
+    lowercase(A);           //case change
     newUser->country = (char *)malloc(strlen(A)*sizeof(char));
     assert(newUser->country!=NULL);
     strcpy(newUser->country,A);
@@ -101,6 +105,7 @@ L2:
     memset(A,'\0',100*sizeof(char));
     printf("Enter your hobby (any 1): ");
     scanf(" %[^\n]%*c", A);
+    lowercase(A);           //case change
     newUser->hobby = (char *)malloc(strlen(A)*sizeof(char));
     assert(newUser->hobby!=NULL);
     strcpy(newUser->hobby,A);
@@ -109,6 +114,7 @@ L2:
     memset(A,'\0',100*sizeof(char));
     printf("Enter your organisation: ");
     scanf(" %[^\n]%*c", A);
+    lowercase(A);           //case change
     newUser->organization = (char *)malloc(strlen(A)*sizeof(char));
     assert(newUser->organization!=NULL);
     strcpy(newUser->organization,A);
@@ -139,4 +145,12 @@ void userDetails(user* userAddress)
     printf("Country     : %s\n",userAddress->country);
     printf("Hobby       : %s\n",userAddress->hobby);
     printf("Organization: %s\n",userAddress->organization);
+}
+
+void lowerase(char* A)
+{
+    for (int i = 0; i < strlen(A); i++)
+    {
+        A[i] = tolower(A[i]);
+    }
 }
