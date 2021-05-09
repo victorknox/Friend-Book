@@ -166,6 +166,7 @@ int main()
             free(list->array_of_users[i]);
         }
     }
+    free(list->array_of_users);
     free(list);
     freeHeap(heap);
     return 0;
