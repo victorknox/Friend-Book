@@ -87,7 +87,7 @@ int acceptinput(user_list *list, struct minHeap *heap)
             printf("\n%lld is not a registered user !", a);
             printf("\nTaking you back to the main menu...");
         }
-        if (b > MASTER || list->array_of_users[b] == NULL)
+        else if (b > MASTER || list->array_of_users[b] == NULL)
         {
             printf("\n%lld is not a registered user !", b);
             printf("\nTaking you back to the main menu...");
