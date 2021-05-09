@@ -221,10 +221,6 @@ void removeall(friends *Q)                  //Empties the list of all the friend
   }
   //It traverses the whole hashtable and deletes all the user id's
   Q->num_added=0;
-  for(long long int i=0;i<Q->capacity;i++)
-  {
-    free(Q->friend[i]);
-  }
 }
 
 void printall(friends *Q)     //prints all the friends of the person
