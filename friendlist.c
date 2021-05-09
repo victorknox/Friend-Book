@@ -2,7 +2,11 @@
 #include <math.h>
 #include <stdlib.h>
 
+<<<<<<< HEAD
 #define min_no_frds 97        //The minimum number of friends(table size of hash table)
+=======
+#define min_no_frds 97         //The minimum number of friends
+>>>>>>> 304131e5ed4caa5a60d34d48e135af53d7e47c4a
 typedef struct data data;
 typedef struct friends friends;
 

@@ -7,6 +7,13 @@
 #include "register.h"
 #include "functions.h"
 #include "vector.h"
+#define GREEN "\033[32m"
+#define RED "\033[31m"
+#define YELLOW "\033[33m"
+#define BLUE "\033[34m"
+#define MAGENTA "\033[35m"
+#define CYAN "\033[36m"
+#define RESET "\033[0m"
 
 #define GREEN "\033[32m"
 #define RED "\033[31m"
@@ -42,7 +49,9 @@ void printUI() //This function prints the list of commands the user can use
 int acceptinput(user_list *list, struct minHeap *heap) 
 {
     //This function acccepts the command from the user and calls the respective function 
+    printf(GREEN);
     printf("\nEnter choice: ");
+    printf(RESET);
     char inp;
     long long a, b;
     scanf(" %c", &inp);
@@ -50,89 +59,122 @@ int acceptinput(user_list *list, struct minHeap *heap)
         ;
     if (inp == '1') //User wants to register new user
     {
+        printf(CYAN);
         printf("Registering new user\n");
+        printf(RESET);
         user *temp = TakeInput(heap);
         list->array_of_users[temp->ID] = temp; //storing the struct returned by TakeInput in the array of user structs
         resize_user_array(list); //list is a dynamic array of structs and its capacity is updated by this function
 
         recommend_new(list, temp->ID);
+        printf(RED);
         printf("Taking you to the main menu...\n");
+        printf(RESET);
     }
     else if (inp == '2')
     {
         //To unregister the existing user 
+        printf(CYAN);
         printf("Unregister existing user\n");
+        printf(RESET);
         printf("Enter user ID :");
         scanf("%lld", &a);
         unregister(a, list, heap);
+        printf(RED);
+        printf("\nTaking you back to the main menu...\n");
+        printf(RESET);
     }
     else if (inp == '3')
     {
         //An already registered user wants friend recommendations
+        printf(CYAN);
         printf("Recommend friends to existing user\n");
+        printf(RESET);
         printf("Enter user ID: ");
         scanf("%lld", &a);
         if (a <= 0 || a > MASTER || list->array_of_users[a] == NULL)
         {
             //We check if the user id is valid or not before recommending
+            printf(RED);
             printf("\n%lld is not a registered user !", a);
             printf("\nTaking you back to the main menu...");
+            printf(RESET);
         }
         else
         {
             printf("How many recommendations do you want: ");
             scanf("%lld", &b);
             recommend_old(b, a, heap, list);
+            printf(RED);
             printf("\nTaking you back to the main menu...\n");
+            printf(RESET);
         }
     }
     else if (inp == '4')
     {
         //Adds friend to the user by taking user ids of two users
+        printf(CYAN);
         printf("Add friend\n");
+        printf(RESET);
         AddSingleFriend(list);
     }
     else if (inp == '5')
     {
         //Checks friendship status of two users
+        printf(CYAN);
         printf("Check friendship status! List 2 user IDs!\n");
+        printf(RESET);
         scanf("%lld%lld", &a, &b);
         //We check if either of the user ID's are invalid bfore checking their friendship status
         if (a <= 0 || a > MASTER || list->array_of_users[a] == NULL)
         {
+            printf(RED);
             printf("\n%lld is not a registered user !", a);
             printf("\nTaking you back to the main menu...");
+            printf(RESET);
         }
         else if (a <= 0 || b > MASTER || list->array_of_users[b] == NULL)
         {
+            printf(RED);
             printf("\n%lld is not a registered user !", b);
             printf("\nTaking you back to the main menu...");
+            printf(RESET);
         }
         else
         {
             if (checkfriendshipstatus(list->array_of_users[a]->following, b) == 1)//If both user ids are valid it checks the friendship status
             {
                 //It calls the check friendship status function to check for b in the friends list of a
+                printf(RED);
                 printf("\nYes, they are friends!");
+                printf(RESET);
             }
             else
             {
+                printf(RED);
                 printf("\nNo, they aren't friends!");
+                printf(RESET);
             }
+            printf(RED);
             printf("\nTaking you back to the main menu...\n");
+            printf(RESET);
         }
     }
     else if (inp == '6') 
     {
         //Prints details of the user whose ID is mentioned
+        printf(CYAN);
         printf("Printing parameters of a user\n");
+        printf(RESET);
         long long tempID;
         printf("Enter user ID: ");
         scanf("%lld", &tempID);
         if (tempID <= 0 || tempID > MASTER || list->array_of_users[tempID] == NULL) //Checks if ID is valid
         {
+            printf(RED);
             printf("\n%lld is not a registered user !", tempID);
             printf("\nTaking you back to the main menu...");
+            printf(RESET);
         }
         else
         {
@@ -142,12 +184,16 @@ int acceptinput(user_list *list, struct minHeap *heap)
     else if (inp == '0')
     {
         //To exit the program
+        printf(RED);
         printf("Exiting!\nThank you for using this service\n"); 
+        printf(RESET);
     }
     else
     {
         //If the input is invalid (i.e,it is not a number from 0 to 6)
+        printf(RED);
         printf("Invalid Input! Please try again!\n"); 
+        printf(RESET);
         inp = acceptinput(list, heap);
     }
     return inp;
