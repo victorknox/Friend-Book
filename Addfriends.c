@@ -4,7 +4,7 @@
 #include "user.h"
 #include "priorityQueue.h"
 
-extern unsigned int MASTER;
+extern long long int MASTER;
 
 void AddF(user_list *list, long long a, long long b) //Adds b to friend list of a and a to the anti-friend list of b
 {

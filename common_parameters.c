@@ -7,7 +7,7 @@
 #include "user.h"
 #include "functions.h"
 
-extern unsigned int MASTER; //This stores the Largest user id of any user who ever registered
+extern long long int MASTER; //This stores the Largest user id of any user who ever registered
 
 typedef struct node     //Node for linked list
 {
@@ -15,7 +15,7 @@ typedef struct node     //Node for linked list
     struct node *next;
 } node;
 
-void insert(node* header, int ID) //Function for inserting node in the beginning of linked list in O(1) time
+void insert(node* header, long long ID) //Function for inserting node in the beginning of linked list in O(1) time
 {
     node *nw = (node *)malloc(sizeof(node));
     assert(nw!=NULL);
@@ -51,17 +51,18 @@ void recommend_new(user_list *list, long long ID)
 {
     int recommendations=10; //Stores the number of users still left to be recommended at any given point in time
     int count=0;            //Stores the number of users the program will be able to recommend
+    long long int q;
     node header[8];         //Array of linked lists
         //header[0] contains all people will 0 common parameters with the given person
         //header[5] linked list contains all people with 5 common parameters and so on
 
-    for(int q=0; q<=7; q++) //Initializing linked lists with header nodes
+    for(q=0; q<=7; q++) //Initializing linked lists with header nodes
     {
         header[q].ID=0;
         header[q].next=NULL;
     }
 
-    for(int q=0; q<=MASTER; q++) //Iterates through all user ids to check number of common parameters for all registered users
+    for(q=0; q<=MASTER; q++) //Iterates through all user ids to check number of common parameters for all registered users
     {
         if(list->array_of_users[q]==NULL || q==ID) //If user with given id isn't registered or is the newly registered user himself, we continue
         {
@@ -76,7 +77,7 @@ void recommend_new(user_list *list, long long ID)
     if(count>10)
         count=10;
     printf("\n\nWe have found %d users for you to befriend! \n", count);
-    for(int q=7; q>=0 && recommendations>0; q--)    //Iterates through all linked lists
+    for(q=7; q>=0 && recommendations>0; q--)    //Iterates through all linked lists
     {                                               // first we recommend users with all 7 common parameters, then 6, then 5 and so on 
         if(header[q].ID > recommendations) //the ID in the header nodes contain how many users are in that linked list 
         {

@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #define ll long long
 
-extern int MASTER; //This is the largest user ID allocated;
+extern long long int MASTER; //This is the largest user ID allocated;
 
 // function to resize array of users
 void resize_user_array(user_list* P){

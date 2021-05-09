@@ -9,12 +9,12 @@
 #include "functions.h"
 #define ll long long
 
-extern unsigned int MASTER;
+extern long long int MASTER;
 // recommend_old(k, userID);
 
 // things needed to execute the function -> no.of.registered users, k,
 // friends lists of every user, userID(of the person who needs user recomm)
-void recommend_old(int k, long long userID, struct minHeap *heap, user_list* list)
+void recommend_old(long long int k, long long userID, struct minHeap *heap, user_list* list)
 {
 
     // to make the queue
@@ -29,7 +29,7 @@ void recommend_old(int k, long long userID, struct minHeap *heap, user_list* lis
     ll distance[n+1];  // stores dist from first user
 
     // initializing all values to 0
-    for(int i = 0; i < n+1; i++){
+    for(long long int i = 0; i < n+1; i++){
         visited[i]  = false ;
         distance[i] = 0;
     }
@@ -41,10 +41,10 @@ void recommend_old(int k, long long userID, struct minHeap *heap, user_list* lis
     // executing BFS over the data
     while (!empty(H))
     {
-        int v = front(H)->x; // v is a user
+        long long int v = front(H)->x; // v is a user
         pop(H);
 
-        for (int i = 0; i < list->array_of_users[v]->following->capacity; i++) // traversing through the friends list of v
+        for (long long int i = 0; i < list->array_of_users[v]->following->capacity; i++) // traversing through the friends list of v
         {
             data *S = list->array_of_users[v]->following->friend[i] -> next;
             while (S != NULL)

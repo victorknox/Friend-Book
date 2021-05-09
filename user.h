@@ -5,7 +5,7 @@
 
 typedef struct user_profile
 {
-    unsigned int ID;
+    long long int ID;
     char* name;
     char gender; //m for male, f for female, o for other, etc.
     unsigned short int age;

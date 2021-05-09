@@ -10,21 +10,21 @@ void removeall(friends *Q);
 
 struct data    //It is the form in which the data of the person or his friends will be stored
 {
-  int user_id;       //It has the user id of a friend or the person itself
+  long long int user_id;       //It has the user id of a friend or the person itself
   data *next;        //It points to the next friend as we are using seperate chaining in the hash table
 };
 
 struct friends                //It is for the friends of a person
 {
-  int capacity;               //It stores the current capacity of the friends it can store
-  int num_added;              //It stores the data of number of friends added
+  long long int capacity;               //It stores the current capacity of the friends it can store
+  long long int num_added;              //It stores the data of number of friends added
   data self;                  //It stores the data of self of a person
   data *friend[];             //It is a flexible array to store the number of friends as in the capacity
 };
 
 void add(long long int user_id, friends **S);
 
-int hash(int user_id, int n)      //It is the hash function of the hashtable
+long long int hash(long long int user_id, long long int n)      //It is the hash function of the hashtable
 {
   return user_id % n;
 }
@@ -57,7 +57,7 @@ friends *vector(data oftheperson)     //It creates the data to allocate the frie
     person->self.next = NULL;                         //The next of the person points to NULL
     person->num_added = 0;                            //The number of persons added initially is zero
     person->capacity = min_no_frds;                   //Initial capacity is initialised to minimum number of friends
-    for (int i = 0; i <= min_no_frds; i++)
+    for (long long int i = 0; i <= min_no_frds; i++)
     {
       person->friend[i] = createdata();
     }
@@ -79,11 +79,11 @@ void reallocall(friends **Q)                            //Reallocates all the da
     (*Q)->self.next = NULL;
     (*Q)->num_added = 0;
     (*Q)->capacity = min_no_frds+temp->capacity;
-    for (int i = 0; i < (*Q)->capacity; i++)
+    for (long long int i = 0; i < (*Q)->capacity; i++)
     {
       (*Q)->friend[i] = createdata();
     }
-  for (int i = 0; i < temp->capacity; i++)              //It reallocates all the friends of the person using the add function
+  for (long long int i = 0; i < temp->capacity; i++)              //It reallocates all the friends of the person using the add function
   {
     while (temp->friend[i] -> next != NULL)
     {
@@ -135,7 +135,7 @@ int isEmpty(friends *S)           //Checks whether the person has any friends at
     return 0;
 }
 
-int vectortotal(friends *S)         //It is the total number of friends added
+long long int vectortotal(friends *S)         //It is the total number of friends added
 {
   return S->num_added;
 }
@@ -186,7 +186,7 @@ void add(long long int user_id, friends **S)      //It is the add function to ad
     (*S)->num_added++;                            //Since a user_id has been added it increments the number added
 }
 
-void removeval(int check_id,friends* Q)         //Removes a particular user id given the person from which it has to be deleted and the user id
+void removeval(long long int check_id,friends* Q)         //Removes a particular user id given the person from which it has to be deleted and the user id
 {
   int m=0;
   long long int p=hash(check_id, Q->capacity);
@@ -210,7 +210,7 @@ void removeval(int check_id,friends* Q)         //Removes a particular user id g
 
 void removeall(friends *Q)                  //Empties the list of all the friends of the person one at a time using removeval function
 {
-  for (int i = 0; i < Q->capacity; i++)
+  for (long long int i = 0; i < Q->capacity; i++)
   {
     data *S = Q->friend[i]->next;
     while (S != NULL)
@@ -221,18 +221,18 @@ void removeall(friends *Q)                  //Empties the list of all the friend
   }
   //It traverses the whole hashtable and deletes all the user id's
   Q->num_added=0;
-  for(int i=0;i<Q->capacity;i++)
+  for(long long int i=0;i<Q->capacity;i++)
     free(Q->friend[i]);
 }
 
 void printall(friends *Q)     //prints all the friends of the person
 {
-  for (int i = 0; i < Q->capacity; i++)     //traverses the whole hash table
+  for (long long int i = 0; i < Q->capacity; i++)     //traverses the whole hash table
   {
     data *S = Q->friend[i]->next;
     while (S != NULL)
     {
-      printf("%d\n",S->user_id);
+      printf("%lld\n",S->user_id);
       S = S->next;
     }
   } 

@@ -3,7 +3,7 @@
 #include "priorityQueue.h"
 #include "register.h"
 
-extern unsigned int MASTER;
+extern long long int MASTER;
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -23,7 +23,7 @@ void unregister(long long int id, user_list *userlist, struct minHeap *heap) //u
       InsertToHeap(heap, id);
 
       user *user_tbr = userlist->array_of_users[id];          //finds the struct of A in userlist
-      for (int i = 0; i < user_tbr->followers->capacity; i++) //traverses antifriendlist of A
+      for (long long int i = 0; i < user_tbr->followers->capacity; i++) //traverses antifriendlist of A
       {
             data *P = user_tbr->followers->friend[i];
             while (P != NULL)
@@ -41,7 +41,7 @@ void unregister(long long int id, user_list *userlist, struct minHeap *heap) //u
 
       // This next part removes A from all the antifriends lists of A's friends
 
-      for (int i = 0; i < user_tbr->following->capacity; i++) //traverses friendlist of A
+      for (long long int i = 0; i < user_tbr->following->capacity; i++) //traverses friendlist of A
       {
             data *Q = user_tbr->following->friend[i];
             while (Q != NULL)

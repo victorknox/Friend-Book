@@ -8,7 +8,7 @@
 #include "functions.h"
 #include "vector.h"
 
-extern unsigned int MASTER;
+extern long long int MASTER;
 
 void printUI() //This function prints the list of commands the user can use
 {
@@ -157,7 +157,7 @@ int main()
     printf("\n");
 
     //Freeing all the dynamically allocated Memory
-    for (int i = 0; i < list->capacity; i++)        //Freeing the data of the whole list of users
+    for (long long int i = 0; i < list->capacity; i++)        //Freeing the data of the whole list of users
     {
         if (list->array_of_users[i] != NULL)        //Frees the data of individual user
         {

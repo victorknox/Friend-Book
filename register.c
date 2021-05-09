@@ -15,11 +15,11 @@
 //struct minHeap * variableName = initHeap();
 ////////
 
-unsigned int MASTER = 0;
+long long int MASTER = 0;
 
-unsigned int idAllocation(struct minHeap *heap) //returns the least minimum id to the user....
+long long int idAllocation(struct minHeap *heap) //returns the least minimum id to the user....
 {
-    unsigned int userId;
+    long long int userId;
     if (CheckIsEmpty(heap))
     {
         userId = extractMin(heap);
@@ -35,7 +35,7 @@ user *TakeInput(struct minHeap *heap) //taking the input incase of the user regi
     user *newUser = (user *)malloc(sizeof(user));
     // printf("**-----THANK U FOR INITIALSING THE REGISTERING WITH US-------**\n");
     newUser->ID = idAllocation(heap);
-    printf("\nYour unique ID is %d \n\n", newUser->ID);
+    printf("\nYour unique ID is %lld \n\n", newUser->ID);
 
     printf("Enter your name: ");
     scanf(" %[^\n]%*c", A); //scaning the name....
@@ -124,10 +124,12 @@ L2:
 
     //Creating friends list
     data *temp = createdata();
+    data *temp2 = createdata();
     temp->user_id = newUser->ID;
+    temp2->user_id = newUser->ID;
     newUser->following = vector(*temp);
-    newUser->followers = vector(*temp);
-
+    newUser->followers = vector(*temp2);
+    //free(temp);
     return newUser;
 }
 
@@ -140,7 +142,7 @@ void userDetails(user_list *list, long long int id)
         return;
     }
     printf("Name        : %s\n", userAddress->name);
-    printf("Unique ID   : %d\n", userAddress->ID);
+    printf("Unique ID   : %lld\n", userAddress->ID);
     printf("Gender      : %c\n", userAddress->gender);
     printf("Age         : %hd\n", userAddress->age);
     printf("City        : %s\n", userAddress->city);
@@ -148,7 +150,7 @@ void userDetails(user_list *list, long long int id)
     printf("Hobby       : %s\n", userAddress->hobby);
     printf("Organization: %s\n", userAddress->organization);
     int m = 0;
-    for (int i = 0; i < userAddress->following->capacity; i++)
+    for (long long int i = 0; i < userAddress->following->capacity; i++)
     {
         data *S = userAddress->following->friend[i] -> next;
         while (S != NULL)
@@ -158,7 +160,7 @@ void userDetails(user_list *list, long long int id)
                 printf("Friends of user:\n");
                 m = 1;
             }
-            printf("User ID: %d| %s\n", S->user_id, list->array_of_users[S->user_id]->name);
+            printf("User ID: %lld| %s\n", S->user_id, list->array_of_users[S->user_id]->name);
             S = S->next;
         }
     }

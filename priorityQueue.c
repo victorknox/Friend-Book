@@ -17,17 +17,17 @@ struct minHeap* initHeap(void)
     struct minHeap* temp = (struct minHeap*)malloc(sizeof(struct minHeap));
     assert(temp!=NULL);
     temp->heapSize = 0;
-    temp->heap = (int *)malloc(100000*sizeof(int));
+    temp->heap = (long long int *)malloc(100000*sizeof(long long int));
     assert(temp->heap!=NULL);
     return temp;
 }
 
 
-void InsertToHeap(struct minHeap * heap1,int element)    //index from the array 1 to max_size.......***parent to index is index/2***.....
+void InsertToHeap(struct minHeap * heap1,long long int element)    //index from the array 1 to max_size.......***parent to index is index/2***.....
 {
     heap1->heapSize++;
     heap1->heap[heap1->heapSize] = element; 
-    int index = heap1->heapSize;
+    long long int index = heap1->heapSize;
     while (heap1->heap[index / 2] > element)
     {
         heap1->heap[index] = heap1->heap[index / 2];
@@ -36,9 +36,9 @@ void InsertToHeap(struct minHeap * heap1,int element)    //index from the array 
     heap1->heap[index] = element;
 }
 
-int extractMin(struct minHeap * heap1)
+long long int extractMin(struct minHeap * heap1)
 {
-    int minElement, lastElement, child, index;
+    long long int minElement, lastElement, child, index;
 
     minElement = heap1->heap[1];
     lastElement = heap1->heap[heap1->heapSize];
