@@ -83,7 +83,7 @@ void recommend_new(user_list *list, long long ID)
             // selectRandom(header[q], recommendations);
             // printf("print %d out of %lld users with %d common parameters\n", recommendations, header[q].ID, q);
             node* temp = header[q].next;
-            while(recommendations>=0)
+            while(recommendations>=0) //There are more people with same number of common parameters than there are users left to recommend
             {
                 printf("%d) User ID: %lld | User name: %s\n", (11-recommendations), temp->ID, list->array_of_users[temp->ID]->name);
                 recommendations--;
