@@ -2,7 +2,7 @@
 #include <math.h>
 #include <stdlib.h>
 
-#define min_no_frds 100         //The minimum number of friends
+#define min_no_frds 97         //The minimum number of friends
 typedef struct data data;
 typedef struct friends friends;
 
