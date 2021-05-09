@@ -130,8 +130,9 @@ L2:
     return newUser;
 }
 
-void userDetails(user* userAddress)
+void userDetails(user_list* list,long long int id)
 {
+    user *userAddress=list->array_of_users[id];
     if(userAddress==NULL)
     {
         printf("User isn't registered!\n");
@@ -145,7 +146,25 @@ void userDetails(user* userAddress)
     printf("Country     : %s\n",userAddress->country);
     printf("Hobby       : %s\n",userAddress->hobby);
     printf("Organization: %s\n",userAddress->organization);
+    int m=0;
+    for(int i=0;i<userAddress->following->capacity;i++)
+    {
+        data* S=userAddress->following->friend[i]->next;
+        while(S != NULL)
+        {
+            if(m==0)
+            {
+                printf("The friends of the user are:\n");
+                m=1;
+            }
+            printf("%s is a friend of %s with user id %d\n",list->array_of_users[S->user_id]->name,userAddress->name,S->user_id);
+            S = S->next;
+        }
+    }
+    if(m==0)
+        printf("The person currently has no friends\n");
 }
+
 
 void lowerase(char* A)
 {
