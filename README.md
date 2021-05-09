@@ -4,6 +4,8 @@ A Friends Recommendation System
 
 ## How to Compile
 
+clone the repository on to your local machine
+
 To compile the code run the command "gcc *.c" in your terminal.
 
 You can run the executable file to run the program
