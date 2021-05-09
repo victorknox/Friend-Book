@@ -6,6 +6,8 @@
 typedef struct data data;
 typedef struct friends friends;
 
+void removeall(friends *Q);
+
 struct data    //It is the form in which the data of the person or his friends will be stored
 {
   int user_id;       //It has the user id of a friend or the person itself
@@ -186,7 +188,7 @@ void add(long long int user_id, friends **S)      //It is the add function to ad
 
 void removeval(int check_id,friends* Q)         //Removes a particular user id given the person from which it has to be deleted and the user id
 {
-    int m=0;
+  int m=0;
   long long int p=hash(check_id, Q->capacity);
   while(Q->friend[p]->next!=NULL)               //Checks for the particular user id and 'm' indicates if such value is there or not
   {
@@ -219,8 +221,9 @@ void removeall(friends *Q)                  //Empties the list of all the friend
   }
   //It traverses the whole hashtable and deletes all the user id's
   Q->num_added=0;
+  for(int i=0;i<Q->capacity;i++)
+    free(Q->friend[i]);
 }
-
 
 void printall(friends *Q)     //prints all the friends of the person
 {
