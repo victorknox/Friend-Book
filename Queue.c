@@ -61,3 +61,13 @@ PtrToNode back(PtrToNode T)
 {
       return T->Prev;
 }
+
+void Freequeue(PtrToNode H, PtrToNode T)
+{
+      while (H->Next != T)
+      {
+            pop(H);
+      }
+      free(H);
+      free(T);
+}
