@@ -116,7 +116,7 @@ int acceptinput(user_list *list, struct minHeap *heap)
         }
         else
         {
-            userDetails(list->array_of_users[tempID]);
+            userDetails(list,tempID);
         }
     }
     else if (inp == '0')
