@@ -15,7 +15,7 @@ void dummyfunc()
 void printUI()
 {
     // system("clear");
-    printf("\n\n\t  *** Friend Recommendation System ***\n");
+    printf("\n\n\t\t  *** Friend Book ***\n");
     printf("\n");
     printf("\t\t    List of commands\n");
     printf("\t=========================================\n");

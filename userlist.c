@@ -19,7 +19,6 @@ user_list* create_user_list(){
     user_list* P = (user_list*)malloc(sizeof(user_list));
 
     P->capacity = 15;
-    P->largest_user_ID = 0;
     P->array_of_users = (user**)malloc(sizeof(user*)* P->capacity);
 
     return P;
