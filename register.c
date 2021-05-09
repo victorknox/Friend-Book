@@ -87,7 +87,7 @@ L2:
     {
         if (newUser->age >= 200 || newUser->age < 0)
         {
-            printf("**ERROR**\nYou have entered a huge number or a negetive age,\nPlease re-enter the age properly.\n");
+            printf("**ERROR**\nYou have entered a huge number or a negative age,\nPlease re-enter the age properly.\n");
             goto L2;
         }
     }

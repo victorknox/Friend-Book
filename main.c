@@ -120,7 +120,6 @@ int acceptinput(user_list *list, struct minHeap *heap)
     else if (inp == '0')
     {
         printf("Exiting!\nThank you for using this service\n");
-        dummyfunc();
     }
     else
     {
@@ -136,6 +135,7 @@ int main()
     struct minHeap *heap = initHeap();
 
     char inp = '1';
+    system("clear");
     while (inp != '0')
     {
         printUI();
