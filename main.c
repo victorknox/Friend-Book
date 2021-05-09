@@ -59,7 +59,7 @@ int acceptinput(user_list *list, struct minHeap *heap)
         resize_user_array(list); //list is a dynamic array of structs and its capacity is updated by this function
 
         recommend_new(list, temp->ID);
-        printf(YELLOW);
+        printf(RED);
         printf("Taking you to the main menu...\n");
         printf(RESET);
     }
