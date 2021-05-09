@@ -108,6 +108,7 @@ int acceptinput(user_list *list, struct minHeap *heap)
     {
         printf("Printing parameters of a user\n");
         long long tempID;
+        printf("Enter user id: ");
         scanf("%lld", &tempID);
         if (tempID > MASTER || list->array_of_users[tempID] == NULL)
         {
