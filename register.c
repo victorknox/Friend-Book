@@ -174,7 +174,7 @@ void userDetails(user_list *list, long long int id)
         printf("The person currently has no friends\n");
 }
 
-void lowerase(char *A)
+void lowercase(char *A)                   //funtion to change the case of the input
 {
     for (int i = 0; i < strlen(A); i++)
     {
