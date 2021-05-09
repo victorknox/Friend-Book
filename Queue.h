@@ -26,6 +26,7 @@ void pop(PtrToNode H);//pop(H) is equivalent to pop()
 bool empty(PtrToNode H);//empty(H) is equivalent to empty() [returns true or false]
 PtrToNode front(PtrToNode H);//front(H) is equivalent to front() [returns pointer to first element of queue]
 PtrToNode back(PtrToNode T);//back(T) is equivalent to back() [returns pointer to last element of queue]
+void Freequeue(PtrToNode H,PtrToNode T);//frees the queue [frees all memeory of the queue]
 
 /* 
 Use these 4 lines while executing(before using these functions):
