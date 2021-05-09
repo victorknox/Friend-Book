@@ -69,3 +69,6 @@ Enter the user ID of the user whose details need to be printed
 Type "0" in the terminal to execute this command
 
 Exit the program.
+
+_Note: a test case has been added to the repo with the name testcase.txt, copy the text and paste it in the user interface as an input_
+
