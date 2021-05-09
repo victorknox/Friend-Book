@@ -3,12 +3,13 @@
 #include <stdlib.h>
 #define ll long long
 
+extern int MASTER; //This is the largest user ID allocated;
+
 // function to resize array of users
 void resize_user_array(user_list* P){
     ll cap = P->capacity;
-    printf("\n%lld\n" , P->capacity);
-    if(P->capacity - P->largest_user_ID <= 10){
-        P->capacity *= 100;
+    if(P->capacity - MASTER <= 10){
+        P->capacity *= 10;
 
         P->array_of_users = (user**)realloc(P->array_of_users, sizeof(user*)* P->capacity);
     }

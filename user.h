@@ -20,7 +20,6 @@ typedef struct user_profile
 
 // an array of pointers, each pointer points to a user
 typedef struct user_list{
-    long long largest_user_ID;
     long long capacity;
     user** array_of_users;
 } user_list;
