@@ -4,9 +4,9 @@ A Friends Recommendation System
 
 ## How to Compile
 
-To compile the code run the command "gcc *.c" int your terminal.
+To compile the code run the command "gcc *.c" in your terminal.
 
-U can run the executable file to run the program
+You can run the executable file to run the program
 
 ## Commands
 
