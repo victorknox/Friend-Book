@@ -72,7 +72,6 @@ friends *vector(data oftheperson)     //It creates the data to allocate the frie
 void reallocall(friends **Q)                            //Reallocates all the data manually once the number of friends added becomes equal to the capacity
 {
   friends *temp = *Q;
-  removeall(*Q);
   *Q = (friends *)malloc(sizeof(friends *) + sizeof(data [min_no_frds+temp->capacity]));      //Flexible array thus finds it's use because we can reallocate it to any capacity
   if(*Q==NULL)
   {
