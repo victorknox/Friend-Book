@@ -145,7 +145,7 @@ int acceptinput(user_list *list, struct minHeap *heap)
             if (checkfriendshipstatus(list->array_of_users[a]->following, b) == 1)//If both user ids are valid it checks the friendship status
             {
                 //It calls the check friendship status function to check for b in the friends list of a
-                printf(RED);
+                printf(GREEN);
                 printf("\nYes, they are friends!");
                 printf(RESET);
             }
