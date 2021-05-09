@@ -69,6 +69,7 @@ friends *vector(data oftheperson)     //It creates the data to allocate the frie
 void reallocall(friends **Q)                            //Reallocates all the data manually once the number of friends added becomes equal to the capacity
 {
   friends *temp = *Q;
+  removeall(*Q);
   *Q = (friends *)malloc(sizeof(friends *) + sizeof(data [min_no_frds+temp->capacity]));      //Flexible array thus finds it's use because we can reallocate it to any capacity
   if(*Q==NULL)
   {
@@ -197,7 +198,7 @@ void removeval(long long int check_id,friends* Q)         //Removes a particular
       data* P;
       P=Q->friend[p]->next;
       Q->friend[p]->next=Q->friend[p]->next->next;
-      // free(P);
+      free(P);
       m=1;
       break;
     }
@@ -221,6 +222,10 @@ void removeall(friends *Q)                  //Empties the list of all the friend
   }
   //It traverses the whole hashtable and deletes all the user id's
   Q->num_added=0;
+  for(int i=0;i<Q->num_added;i++)
+  {
+    free(Q->friend[i]);
+  }
 }
 
 void printall(friends *Q)     //prints all the friends of the person
