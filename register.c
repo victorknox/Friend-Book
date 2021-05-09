@@ -129,7 +129,8 @@ L2:
     temp2->user_id = newUser->ID;
     newUser->following = vector(*temp);
     newUser->followers = vector(*temp2);
-    //free(temp);
+    free(temp);
+    free(temp2);
     return newUser;
 }
 
