@@ -31,13 +31,13 @@ Enter details of user(prompts like "Enter your name: " would be shown)
 
 Type "2" in the terminal to execute this command
 
-Enter the user ID of the user u wish to unregister
+Enter the user ID of the user you wish to unregister
 
 ### [3] Recommend friends to existing user
 
 Type "3" in the terminal to execute this command
 
-Enter the user ID of the user u want recommendations for
+Enter the user ID of the user you want recommendations for
 
 ### [4] Add friend to existing user
 
