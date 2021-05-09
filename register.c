@@ -128,7 +128,7 @@ L2:
     assert(newUser->organization != NULL);
     strcpy(newUser->organization, A);
 
-    printf("\n User successfully registered!\n");
+    printf("\n User successfully registered!");
 
     //Creating friends list
     data *temp = createdata();
@@ -163,10 +163,10 @@ void userDetails(user_list *list, long long int id)
         {
             if (m == 0)
             {
-                printf("The friends of the user are:\n");
+                printf("Friends of user:\n");
                 m = 1;
             }
-            printf("%s is a friend of %s with user id %d\n", list->array_of_users[S->user_id]->name, userAddress->name, S->user_id);
+            printf("User ID: %d| %s\n", S->user_id, list->array_of_users[S->user_id]->name);
             S = S->next;
         }
     }

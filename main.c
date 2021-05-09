@@ -8,10 +8,6 @@
 
 extern unsigned int MASTER;
 
-void dummyfunc()
-{
-}
-
 void printUI()
 {
     // system("clear");
@@ -50,6 +46,7 @@ int acceptinput(user_list *list, struct minHeap *heap)
     else if (inp == '2')
     {
         printf("Unregister existing user\n");
+        printf("Enter user ID :");
         scanf("%lld", &a);
         unregister(a, list, heap);
     }
@@ -57,7 +54,7 @@ int acceptinput(user_list *list, struct minHeap *heap)
     {
 
         printf("Recommend friends to existing user\n");
-        printf("Enter user id: ");
+        printf("Enter user ID: ");
         scanf("%lld", &a);
         if (a > MASTER || list->array_of_users[a] == NULL)
         {
@@ -79,7 +76,7 @@ int acceptinput(user_list *list, struct minHeap *heap)
     }
     else if (inp == '5')
     {
-        printf("Check friendship status! List 2 user ids!\n");
+        printf("Check friendship status! List 2 user IDs!\n");
         scanf("%lld%lld", &a, &b);
         if (a > MASTER || list->array_of_users[a] == NULL)
         {
@@ -108,7 +105,7 @@ int acceptinput(user_list *list, struct minHeap *heap)
     {
         printf("Printing parameters of a user\n");
         long long tempID;
-        printf("Enter user id: ");
+        printf("Enter user ID: ");
         scanf("%lld", &tempID);
         if (tempID > MASTER || list->array_of_users[tempID] == NULL)
         {

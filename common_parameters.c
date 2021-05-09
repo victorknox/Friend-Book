@@ -102,6 +102,7 @@ void recommend_new(user_list *list, long long ID)
             }
         }
     }
+    printf("\n");
     if(count > 0){ //If count=0, we have recommended no friends to user
         AddMultipleFriends(list, ID, count); //Allows user to add recommended users as friends
     }
