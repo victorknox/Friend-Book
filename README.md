@@ -26,6 +26,9 @@ Once executed, it provides the minimum positive integer which is not currently i
 
 Enter details of user(prompts like "Enter your name: " would be shown)
 
+After registering, recommendations will be shown based on common paramaters, enter "y" to add any friends from the recommendations and "n" to abort
+
+if adding friends, specify the number of friends you would like to add and their user IDs
 
 ### [2] Unregister an existing user
 
@@ -38,6 +41,10 @@ Enter the user ID of the user you wish to unregister
 Type "3" in the terminal to execute this command
 
 Enter the user ID of the user you want recommendations for
+
+recommendations will be shown based on friends list, enter "y" to add any friends from the recommendations and "n" to abort
+
+if adding friends, specify the number of friends you would like to add and their user IDs
 
 ### [4] Add friend to existing user
 
