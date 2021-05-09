@@ -8,14 +8,25 @@
 #include "functions.h"
 #include "vector.h"
 
+#define GREEN "\033[32m"
+#define RED "\033[31m"
+#define YELLOW "\033[33m"
+#define BLUE "\033[34m"
+#define MAGENTA "\033[35m"
+#define CYAN "\033[36m"
+#define RESET "\033[0m"
+
 extern long long int MASTER;
 
 void printUI() //This function prints the list of commands the user can use
 {
     // system("clear");
+    printf(BLUE);
     printf("\n\n\t\t  *** Friend Book ***\n");
     printf("\n");
+    printf(CYAN);
     printf("\t\t    List of commands\n");
+    printf(RESET);
     printf("\t=========================================\n");
     printf("\t  [1] Register new user\n");
     printf("\t  [2] Unregister existing user\n");

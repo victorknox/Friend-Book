@@ -15,7 +15,7 @@ void AddF(user_list *list, long long a, long long b) //Adds b to friend list of 
 void AddMultipleFriends(user_list *list, long long a, long long count) //Called after recommending friends to new and old users
 {
     // adding multiple users as friends to a user
-    printf("would you like to add any of these users as your friends? (y/n) :");
+    printf("would you like to add any of these users as your friends? (y/n): ");
     char inp;
     Line:
     scanf("%c" , &inp);
