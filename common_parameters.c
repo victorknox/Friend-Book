@@ -47,6 +47,7 @@ int fcommon(const user *A, const user *B) //returns number of common parameters 
 void recommend_new(const user_list *list, long long ID)
 {
     int recommendations=10;
+    int count=0;
     node header[8];
     for(int q=0; q<=7; q++)
     {
@@ -61,11 +62,14 @@ void recommend_new(const user_list *list, long long ID)
             continue;
         }
         int common = fcommon(list->array_of_users[ID], list->array_of_users[q]);
-        printf("User %d, %d common parameters\n", q, common);
+        // printf("User %d, %d common parameters\n", q, common);
         insert(&header[common], q);
+        count++;
         (header[common].ID)++;
     }
-
+    if(count>10)
+        count==10;
+    printf("\n\nWe have found %d users for you to befriend! \n", count);
     for(int q=7; q>=0 && recommendations>0; q--)
     {
         if(header[q].ID > recommendations)
@@ -79,7 +83,7 @@ void recommend_new(const user_list *list, long long ID)
             node* temp = header[q].next;
             while(temp!=NULL)
             {
-                printf("%d) User ID: %lld\n", (11-recommendations), temp->ID);
+                printf("%d) User ID: %lld | User name: %s\n", (11-recommendations), temp->ID, list->array_of_users[temp->ID]->name);
                 recommendations--;
                 temp=temp->next;
             }

@@ -113,7 +113,7 @@ L2:
     assert(newUser->organization!=NULL);
     strcpy(newUser->organization,A);
     
-    printf("\n User successfully registered!\n\nTaking you to the main menu...");
+    printf("\n User successfully registered!\n");
     
     //Creating friends list
     data* temp = createdata();

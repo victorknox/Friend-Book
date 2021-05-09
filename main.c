@@ -34,7 +34,7 @@ int acceptinput(user_list *list, struct minHeap *heap)
 {
     printf("\nEnter choice: ");
     char inp;
-    int a, b;
+    long long a, b;
     scanf(" %c", &inp);
     while ((getchar()) != '\n');
     if (inp == '1')
@@ -44,20 +44,22 @@ int acceptinput(user_list *list, struct minHeap *heap)
         list->array_of_users[temp->ID] = temp;
         resize_user_array(list);
 
-        // recommend_new(list, temp->ID);
+        recommend_new(list, temp->ID);
+        printf("Taking you to the main menu...\n");
     }
     else if (inp == '2')
     {
         printf("Unregister existing user\n");
-        scanf("%d", &a);
+        scanf("%lld", &a);
         unregister(a, list, heap);
+        printf("\nTaking you back to the main menu...\n");
     }
     else if (inp == '3')
     {
 
         printf("Recommend friends to existing user\n");
         printf("Enter user id: ");
-        scanf("%d", &a);
+        scanf("%lld", &a);
         if (a > MASTER || list->array_of_users[a] == NULL)
         {
             printf("\n%lld is not a registered user !", a);
@@ -66,8 +68,9 @@ int acceptinput(user_list *list, struct minHeap *heap)
         else
         {
             printf("How many recommendations do you want: ");
-            scanf("%d", &b);
+            scanf("%lld", &b);
             recommend_old(b, a, heap, list);
+            printf("\nTaking you back to the main menu...\n");
         }
     }
     else if (inp == '4')
@@ -78,7 +81,7 @@ int acceptinput(user_list *list, struct minHeap *heap)
     else if (inp == '5')
     {
         printf("Check friendship status! List 2 user ids!\n");
-        scanf("%d%d", &a, &b);
+        scanf("%lld%lld", &a, &b);
         if (a > MASTER || list->array_of_users[a] == NULL)
         {
             printf("\n%lld is not a registered user !", a);
@@ -99,13 +102,14 @@ int acceptinput(user_list *list, struct minHeap *heap)
             {
                 printf("\nNo, they aren't friends!");
             }
+            printf("\nTaking you back to the main menu...\n");
         }
     }
     else if (inp == '6')
     {
         printf("Printing parameters of a user\n");
-        int tempID;
-        scanf("%d", &tempID);
+        long long tempID;
+        scanf("%lld", &tempID);
         if (tempID > MASTER || list->array_of_users[tempID] == NULL)
         {
             printf("\n%lld is not a registered user !", tempID);
