@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-
+#include "priorityQueue.h"
 #include "user.h"
-
+#include "functions.h"
 extern unsigned int MASTER;
 
 typedef struct node
@@ -44,7 +44,7 @@ int fcommon(const user *A, const user *B) //returns number of common parameters 
 }
 
 // select(random)
-void recommend_new(const user_list *list, long long ID)
+void recommend_new(user_list *list, long long ID)
 {
     int recommendations=10;
     int count=0;
@@ -88,5 +88,8 @@ void recommend_new(const user_list *list, long long ID)
                 temp=temp->next;
             }
         }
+    }
+    if(count > 0){
+        AddMultipleFriends(list, ID, count);
     }
 }

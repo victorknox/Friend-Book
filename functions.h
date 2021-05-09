@@ -10,7 +10,7 @@ void unregister(long long int id, user_list *userlist, struct minHeap* heap);
 
 void recommend_old(int k, long long userID, struct minHeap *heap, user_list* list);
 
-void recommend_new(const user_list *list, long long ID);
+void recommend_new(user_list *list, long long ID);
 
-void AddMultipleFriends(user_list *list, long long a);
+void AddMultipleFriends(user_list *list, long long a, long long count);
 #endif

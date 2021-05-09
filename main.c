@@ -45,7 +45,6 @@ int acceptinput(user_list *list, struct minHeap *heap)
         resize_user_array(list);
 
         recommend_new(list, temp->ID);
-        AddMultipleFriends(list, temp->ID);
         printf("Taking you to the main menu...\n");
     }
     else if (inp == '2')
@@ -53,7 +52,6 @@ int acceptinput(user_list *list, struct minHeap *heap)
         printf("Unregister existing user\n");
         scanf("%lld", &a);
         unregister(a, list, heap);
-        printf("\nTaking you back to the main menu...\n");
     }
     else if (inp == '3')
     {

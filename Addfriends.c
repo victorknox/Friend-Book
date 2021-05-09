@@ -12,7 +12,7 @@ void AddF(user_list *list, long long a, long long b)
     add(a, &(list->array_of_users[b]->followers));
 }
 
-void AddMultipleFriends(user_list *list, long long a)
+void AddMultipleFriends(user_list *list, long long a, long long count)
 {
     // adding multiple users as friends to a user
     printf("would you like to add any of these users as your friends? (y/n) :");
@@ -28,14 +28,19 @@ void AddMultipleFriends(user_list *list, long long a)
         long long x;
         printf("\nSelect the number of friends u want to add: ");
             scanf("%lld", &x);
-        printf("\nplease provide the user IDs of friends u would like to add to %lld", a);
+        if(x > count){
+            x = count;
+            printf("We have only recommended %lld users\n" , count);
+        }
+        printf("\nAdding %lld users...\n", x);
+        printf("\nplease provide the user IDs of friends u would like to add to user %lld : ", a);
         long long b;
         for (int i = 0; i < x; i++)
         {
             scanf("%lld", &b);
             printf("\nAdding %lld as a friend of %lld...", b, a);
         }
-        printf("\nAdded all the friends !");
+        printf("\nAdded all the friends!\n");
     }
 }
 
