@@ -75,5 +75,6 @@ int CheckIsEmpty(struct minHeap * heap1)            //return 0 if it is empty
 
 void freeHeap(struct minHeap* heap1)              //free the memory of the heap
 {
+    free(heap1->heap);
     free(heap1);
 }

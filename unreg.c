@@ -11,7 +11,7 @@ extern unsigned int MASTER;
 
 void unregister(long long int id, user_list *userlist, struct minHeap *heap) //unregisters a person from the database(say A)
 {
-      if (id > MASTER || userlist->array_of_users[id] == NULL)
+      if (id<=0 || id > MASTER || userlist->array_of_users[id] == NULL)
       {
             printf("\n%lld is not a registered user !", id);
             printf("\nTaking you back to the main menu...");
@@ -59,7 +59,10 @@ void unregister(long long int id, user_list *userlist, struct minHeap *heap) //u
 
       free(userlist->array_of_users[id]->city);
       free(userlist->array_of_users[id]->country);
+
+      removeall(userlist->array_of_users[id]->followers);
       free(userlist->array_of_users[id]->followers);
+      removeall(userlist->array_of_users[id]->following);
       free(userlist->array_of_users[id]->following);
 
       free(userlist->array_of_users[id]->hobby);

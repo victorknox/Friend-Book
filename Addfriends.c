@@ -19,14 +19,16 @@ void AddMultipleFriends(user_list *list, long long a, long long count)
     char inp;
     Line:
     scanf("%c" , &inp);
+    while ((getchar()) != '\n')
+        ;
     inp = tolower(inp);
     if(inp != 'y' && inp != 'n'){
-        printf("\nError! choose one of (y/n)");
+        printf("\nError! choose one of (y/n): ");
         goto Line;
     }
     if(inp == 'y'){
         long long x;
-        printf("\nSelect the number of friends u want to add: ");
+        printf("\nSelect the number of friends you want to add: ");
             scanf("%lld", &x);
         if(x > count){
             x = count;
@@ -39,7 +41,7 @@ void AddMultipleFriends(user_list *list, long long a, long long count)
         {
             printf("\nEnter user ID: ");
             scanf("%lld", &b);
-            if(b > MASTER || list->array_of_users[b] == NULL )
+            if(b<=0 || b > MASTER || list->array_of_users[b] == NULL )
             {
                 printf("\n%lld is not a registered user !",b);
                 printf("\nPlease enter a valid user ID!\n");
@@ -67,15 +69,15 @@ void AddSingleFriend(user_list *list)
         AddSingleFriend(list);
         return;
     }
-    if(a>MASTER || list->array_of_users[a] == NULL)
+    if(a<=0 ||a>MASTER || list->array_of_users[a] == NULL)
     {
-        printf("\n%lld is not a registered user !",a);
+        printf("\n%lld is not a registered user!",a);
         printf("\nTaking you back to the main menu...");
         return;
     }
-    if(b>MASTER || list->array_of_users[b] == NULL)
+    else if(b<=0 ||b>MASTER || list->array_of_users[b] == NULL)
     {
-        printf("\n%lld is not a registered user !",b);
+        printf("\n%lld is not a registered user!",b);
         printf("\nTaking you back to the main menu...");
         return;
     }

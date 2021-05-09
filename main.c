@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <assert.h>
+
 #include "user.h"
 #include "priorityQueue.h"
 #include "register.h"
@@ -32,7 +34,8 @@ int acceptinput(user_list *list, struct minHeap *heap)
     char inp;
     long long a, b;
     scanf(" %c", &inp);
-    while ((getchar()) != '\n');
+    while ((getchar()) != '\n')
+        ;
     if (inp == '1')
     {
         printf("Registering new user\n");
@@ -52,11 +55,10 @@ int acceptinput(user_list *list, struct minHeap *heap)
     }
     else if (inp == '3')
     {
-
         printf("Recommend friends to existing user\n");
         printf("Enter user ID: ");
         scanf("%lld", &a);
-        if (a > MASTER || list->array_of_users[a] == NULL)
+        if (a <= 0 || a > MASTER || list->array_of_users[a] == NULL)
         {
             printf("\n%lld is not a registered user !", a);
             printf("\nTaking you back to the main menu...");
@@ -78,12 +80,12 @@ int acceptinput(user_list *list, struct minHeap *heap)
     {
         printf("Check friendship status! List 2 user IDs!\n");
         scanf("%lld%lld", &a, &b);
-        if (a > MASTER || list->array_of_users[a] == NULL)
+        if (a <= 0 || a > MASTER || list->array_of_users[a] == NULL)
         {
             printf("\n%lld is not a registered user !", a);
             printf("\nTaking you back to the main menu...");
         }
-        else if (b > MASTER || list->array_of_users[b] == NULL)
+        else if (a <= 0 || b > MASTER || list->array_of_users[b] == NULL)
         {
             printf("\n%lld is not a registered user !", b);
             printf("\nTaking you back to the main menu...");
@@ -107,14 +109,14 @@ int acceptinput(user_list *list, struct minHeap *heap)
         long long tempID;
         printf("Enter user ID: ");
         scanf("%lld", &tempID);
-        if (tempID > MASTER || list->array_of_users[tempID] == NULL)
+        if (tempID <= 0 || tempID > MASTER || list->array_of_users[tempID] == NULL)
         {
             printf("\n%lld is not a registered user !", tempID);
             printf("\nTaking you back to the main menu...");
         }
         else
         {
-            userDetails(list,tempID);
+            userDetails(list, tempID);
         }
     }
     else if (inp == '0')
@@ -144,6 +146,27 @@ int main()
     printf("\n");
 
     //Free All Memory
+    for (int i = 0; i < list->capacity; i++)
+    {
+        if (list->array_of_users[i] != NULL)
+        {
+            // printf("Freeing user %d\n", i);
+            free(list->array_of_users[i]->city);
+            free(list->array_of_users[i]->country);
 
+            removeall(list->array_of_users[i]->followers);
+            free(list->array_of_users[i]->followers);
+            removeall(list->array_of_users[i]->following);
+            free(list->array_of_users[i]->following);
+
+            free(list->array_of_users[i]->hobby);
+
+            free(list->array_of_users[i]->name);
+            free(list->array_of_users[i]->organization);
+            free(list->array_of_users[i]);
+        }
+    }
+    free(list);
+    freeHeap(heap);
     return 0;
 }
