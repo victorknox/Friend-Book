@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <ctype.h>
+#include <string.h>
+
 #include "vector.h"
 #include "user.h"
 #include "priorityQueue.h"
@@ -16,11 +18,12 @@ void AddMultipleFriends(user_list *list, long long a, long long count) //Called 
 {
     // adding multiple users as friends to a user
     printf("would you like to add any of these users as your friends? (y/n): ");
-    char inp;
+    char inp = ' ';
+    char temp[100];
     Line:
-    scanf("%c" , &inp);
-    while ((getchar()) != '\n') //We are only interested in the first char of users input
-        ;                       //We discard all input after the first character
+    scanf("%s" , temp);
+    if(strlen(temp)==1)
+        inp=temp[0];
     inp = tolower(inp);
     if(inp != 'y' && inp != 'n'){
         printf("\nError! choose one of (y/n): ");

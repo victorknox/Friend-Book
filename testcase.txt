@@ -1,105 +1,105 @@
-	1
-	Vamshi
-	male
-	19
-	Hyderabad
-	India
-	Gaming
-	IIITH
-	n
-	1
-	Sambasai
-	male
-	18
-	Hyderabad
-	India
-	Binging
-	IIITH
-	n
-	1
-	Samarth
-	male
-	20
-	Raipur
-	India
-	Badminton
-	IITK
-	n
-	1
-	John
-	male
-	22
-	New York
-	USA
-	Coding
-	Princeton
-	n
-	1
-	David
-	male
-	30
-	Sydney
-	Australia
-	Surfing
-	SAP
-	n
-	1
-	Vedant
-	male
-	19
-	Mumbai
-	India
-	Fun
-	IIITH
-	n
-	1
-	Christina
-	female
-	29
-	Melbourne
-	Australia
-	Painting
-	SAP
-	n
-	1
-	Scarlet
-	female
-	27
-	New York
-	Canada
-	Gaming
-	Riot
-	n
-	2
-	4
-	2
-	7
-	1
-	Eren
-	male
-	21
-	Paradis
-	Philippines
-	Attacking
-	Eldia
-	n	
-	1
-	Swapna
-	female
-	25
-	Mumbai
-	India
-	Badminton
-	Sharp
-	n
-	4
-	1 3
-	4
-	3 2
-	2
-	3
-	5
-	1 3
-	5
-	3 2
+1
+Vamshi
+male
+19
+Hyderabad
+India
+Gaming
+IIITH
+n
+1
+Sambasai
+male
+18
+Hyderabad
+India
+Binging
+IIITH
+n
+1
+Samarth
+male
+20
+Raipur
+India
+Badminton
+IITK
+n
+1
+John
+male
+22
+New York
+USA
+Coding
+Princeton
+n
+1
+David
+male
+30
+Sydney
+Australia
+Surfing
+SAP
+n
+1
+Vedant
+male
+19
+Mumbai
+India
+Fun
+IIITH
+n
+1
+Christina
+female
+29
+Melbourne
+Australia
+Painting
+SAP
+n
+1
+Scarlet
+female
+27
+New York
+Canada
+Gaming
+Riot
+n
+2
+4
+2
+7
+1
+Eren
+male
+21
+Paradis
+Philippines
+Attacking
+Eldia
+n	
+1
+Swapna
+female
+25
+Mumbai
+India
+Badminton
+Sharp
+n
+4
+1 3
+4
+3 2
+2
+3
+5
+1 3
+5
+3 2
 
